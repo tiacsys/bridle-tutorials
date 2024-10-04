@@ -63,3 +63,5 @@
    *z.B.: Warum benutzen wir nicht den USB Debug-Adapter?* – *Kann ich den
    USB Debug-Adapter nicht viel besser zum Rücksetzen des Permanentspeichers
    (Flash) am RP2040 benutzen?* – *Kann ich mit diesem Aufbau auch Debuggen?*
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
