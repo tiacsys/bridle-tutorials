@@ -56,3 +56,5 @@ die **Benutzer-Taste an GP20 gedrückt** ist.
    :download:`GS-cytron_maker_pi_rp2040-uartcons-button.uf2
    </_assets/GS-cytron_maker_pi_rp2040-uartcons-button.uf2>`
    – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

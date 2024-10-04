@@ -49,3 +49,5 @@ Die **Benutzer-LED an GP7 "faded"**, in etwa im Sekundentakt.
    :download:`GS-cytron_maker_pi_rp2040-uartcons-fade_led.uf2
    </_assets/GS-cytron_maker_pi_rp2040-uartcons-fade_led.uf2>`
    – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

@@ -1,3 +1,13 @@
+.. rst-class:: page-break
+
+   .. only:: rinoh
+
+      |nbsp|
+.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
+   'page-break-paragraph' react as expected. But the '.. rubric::' directive
+   should also be handled as a 'ParagraphStyle' and trigger that class, But
+   it doesn't work as expected. Fix this later!
+
 .. rubric:: Visual Studio Code (online)
 
 Wenn immer in dieser Anleitung der Text mit dem **Coder Symbol** gekennzeichnet
@@ -160,3 +170,5 @@ symbolische Platzhalter benutzen, z.B. ``<board_name>``.
 
    .. image:: /_images/symbol-observe-or.*
       :class: sidecar
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
