@@ -32,3 +32,5 @@ Cytron – Maker Pi RP2040
    cytron-maker-pi-rp2040/positions
    cytron-maker-pi-rp2040/pinouts
    cytron-maker-pi-rp2040/references
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

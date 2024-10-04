@@ -21,3 +21,5 @@ Positionen
           | 3-poliger JST/SH Anschluss
 
 JST/SH Anschluss Spezifikation: https://rptl.io/debug-spec
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

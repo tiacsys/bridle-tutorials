@@ -18,8 +18,8 @@
      - :Cytron – Maker Pi RP2040:
 
           | **1x** Maker Pi RP2040 (MCU-Board)
-          | **4x** 4-poliges Grove Kabel auf 100mil DuPont, 20cm
-          | **1x** kleiner Schreibendreher (Kreuzschlitz)
+          | **4x** 4-poliges Grove-Kabel auf 100mil DuPont, 20cm
+          | **1x** kleiner Schraubendreher (Kreuzschlitz)
 
      - .. rubric:: 1x
 
@@ -28,10 +28,10 @@
      - :Raspberry Pi – Debug Probe:
 
           | **1x** Raspberry Pi – Debug Probe (USB-Debugger)
-          | **1x** 3-poliges JST/SH Kabel (SWD Direktanschluss)
-          | **2x** 3-poliges JST/SH Kabel auf 100mil DuPont
+          | **1x** 3-poliges JST/SH-Kabel (SWD Direktanschluss)
+          | **2x** 3-poliges JST/SH-Kabel auf 100mil DuPont
 
-          .. | **1x** 1m USB Kabel, USB-A zu microUSB
+          .. | **1x** 1m USB-Kabel, USB-A zu microUSB
 
      - .. rubric:: 1x
 
@@ -236,3 +236,5 @@
           | **4x** Mignon AA/LR6 **Alkalibatterien enthalten**
 
      - .. rubric:: 1x
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

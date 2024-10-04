@@ -19,13 +19,13 @@ Positionen
        #.  | **BOOT-Taste**
            | bei RESET drücken, um in den UF2 Upload-Modus zu gelangen
        #.  | **Grove Port 1~7**
-           | UART, I²C, SPI, ADC, GPIO/PWM
+           | wahlweise UART, I²C, SPI, ADC, GPIO/PWM
        #.  | **WS2812B**
            | 2 RGB-LED an Spezial-PIO
        #.  | **Benutzer-Tasten**
        #.  | **Piezo-Summer**
            | 2,730kHz mit 80~87dB
-       #.  | **Benutzer-LEDs (monochrom)**
+       #.  | **Benutzer-LEDs (einfarbig)**
            | für Diagnosezwecke (keine Spannungsanzeige)
        #.  | **RP2040**
            | MCU: Dual Core, ARM Cortex-M0+
@@ -51,3 +51,5 @@ Positionen
        #.  | **DC-Motorklemmen**
        #.  | **Klemmen für Servomotoren**
        #.  | **DEBUG-Punkte** (SWD)
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
