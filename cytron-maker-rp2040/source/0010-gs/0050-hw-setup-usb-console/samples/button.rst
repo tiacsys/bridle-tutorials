@@ -64,7 +64,7 @@ die **Benutzer-Taste an GP20 gedrückt** ist.
 
 **Baue** nun an deinem Hardwareaufbau **den USB Debug-Adapter ab**, den
 *Raspberry Pi – Debug Probe*, das kleine USB Gerät mit transparentem Gehäuse
-und mit dem orangenen USB Kabel. Du musst jetzt den neuen Aufbau aus
+und mit dem orangenen USB-Kabel. Du musst jetzt den neuen Aufbau aus
 :numref:`gs-hw-setup-usb-console` erhalten.
 
 -----------------------------------------------------------------------------
@@ -90,3 +90,5 @@ für dich funktioniert. Ziehe zur Not uns Mentoren zu Rate.
    :download:`GS-cytron_maker_pi_rp2040-usbcons-button.uf2
    </_assets/GS-cytron_maker_pi_rp2040-usbcons-button.uf2>`
    – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

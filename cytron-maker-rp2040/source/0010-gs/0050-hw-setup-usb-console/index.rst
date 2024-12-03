@@ -167,3 +167,5 @@ jetzt und hier an dieser Stelle sprengen.
 
    samples/button
    samples/led_ws2812
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
