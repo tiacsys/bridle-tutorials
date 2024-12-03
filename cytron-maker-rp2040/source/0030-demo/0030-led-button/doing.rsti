@@ -362,3 +362,5 @@ Ausgaben**, folgendes muss zu sehen sein:
    | :download:`makerpi-led_gp5.overlay </_assets/makerpi-led_gp5.overlay>`,
    | :download:`makerpi-pwm_gp5.overlay </_assets/makerpi-pwm_gp5.overlay>`
    | – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

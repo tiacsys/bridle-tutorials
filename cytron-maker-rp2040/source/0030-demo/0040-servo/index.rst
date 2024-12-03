@@ -131,3 +131,5 @@ von :program:`west build … -S pwm-servo …` nur noch benutzen musst.
 .. include:: bom.rsti
 .. include:: assembly.rsti
 .. include:: doing.rsti
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
