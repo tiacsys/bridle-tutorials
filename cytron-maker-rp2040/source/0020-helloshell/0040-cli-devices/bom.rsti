@@ -18,3 +18,5 @@
      - Du benötigst exakt die selbe Zephyr Firmware wie in der
        :ref:`Übung zuvor <hs-cli-kernel>`, das Bridle Beispiel
        ":ref:`bridle:helloshell`" (``helloshell``).
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

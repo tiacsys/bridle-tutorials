@@ -21,3 +21,5 @@ Shell-Kommando ``i2c`` für T/H-Sensor (AHT20)
 .. include:: doing.rsti
 
 .. target-notes::
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

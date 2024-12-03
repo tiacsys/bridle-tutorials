@@ -55,3 +55,5 @@ man folgende Definition dazu:
 .. include:: bom.rsti
 .. include:: assembly.rsti
 .. include:: doing.rsti
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

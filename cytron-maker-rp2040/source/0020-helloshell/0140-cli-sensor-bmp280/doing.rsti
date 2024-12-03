@@ -286,3 +286,5 @@ temperature*) oder gleich alle Kanäle zu lesen. Hier unser Ergebnis:
 .. [#] https://www.devicetree.org/specifications
 .. [#] https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf
 .. [#] https://usb.org/sites/default/files/hut1_3_0.pdf
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

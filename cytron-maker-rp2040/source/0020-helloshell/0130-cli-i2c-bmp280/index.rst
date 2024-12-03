@@ -21,3 +21,5 @@ Shell-Kommando ``i2c`` für Drucksensor (BMP280)
 .. include:: doing.rsti
 
 .. target-notes::
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

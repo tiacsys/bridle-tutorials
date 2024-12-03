@@ -25,8 +25,8 @@
      - **1x** USB-Hub mit Kabeln
 
        *4-fach USB 2.0 Mini-Hub* für die Verbindung von deinem *Host-PC* zum
-       *MCU-Board* (grünes Kabel) und den *Raspberry Pi – Debug Probe*
-       (orangenes Kabel).
+       *MCU-Board* (grünes USB-Kabel) und den *Raspberry Pi – Debug Probe*
+       (orangenes USB-Kabel).
 
    * - .. image:: /_images/boms/cytron-maker-pi-rp2040.*
           :align: center
@@ -86,3 +86,5 @@
 
        *Goobay 11473* als Energiequelle zur Versorgung des MCU-Boards mit den
        zusätzlich angeschlossenen 4 Servo Motoren.
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

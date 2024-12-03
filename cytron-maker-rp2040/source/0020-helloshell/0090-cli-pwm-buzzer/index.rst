@@ -99,3 +99,5 @@ halben Energie "laut genug" ist.
 .. include:: doing.rsti
 
 .. target-notes::
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
