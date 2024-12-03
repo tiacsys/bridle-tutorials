@@ -15,12 +15,12 @@
        :ref:`Übung zuvor <gs-setup-uart-console>`.
 
    * - **Software:**
-     - Du benötigst zusätzlich die folgenden Firmware Artefakte. Lade diese
-       vor Beginn der Übung herunter und speicher sie an einem Ort auf deinem
+     - Du benötigst zusätzlich die folgenden Firmware-Dateien. Lade diese
+       vor Beginn der Übung herunter und speichere sie an einem Ort auf deinem
        Host-PC, wo du sie auch sofort wiederfindest. Wenn du UI-affin bist,
        empfehlen wir dir deinen Arbeitsbereich (Desktop) zu benutzen. Wenn du
        mehr auf der Kommandozeile arbeitest, dann nutze doch ein Verzeichnis,
-       das du durch wenig tippen erreichen kannst, z.B. :file:`~/Downloads`.
+       das du durch wenig Tippen erreichen kannst, z.B. :file:`~/Downloads`.
 
    * - *Flash Eraser*
      - **Flash Resetting UF2 Firmware**
@@ -52,3 +52,5 @@
    https://circuitpython.org/board/cytron_maker_pi_rp2040
 .. _gh-ootb-demo-code:
    https://github.com/CytronTechnologies/MAKER-PI-RP2040/tree/main/Examples/CircuitPython/Out-of-the-box%20Demo%20Code
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

@@ -54,3 +54,5 @@ der folgenden Übungen <hs-cli-pwm-led>` kennen.
 .. include:: bom.rsti
 .. include:: assembly.rsti
 .. include:: doing.rsti
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

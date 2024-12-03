@@ -16,3 +16,5 @@
    :scale: 95%
 
    *Cytron – Maker Pi RP2040* mit UART Console zum Host-PC
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

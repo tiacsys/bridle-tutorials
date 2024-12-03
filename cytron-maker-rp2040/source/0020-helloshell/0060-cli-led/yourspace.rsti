@@ -29,3 +29,5 @@
 
    *Warum kann ich die zusätzlich angeschlossene LED am Stecker GROVE 3,
    Pin 4, nich auch wie in der Übung zuvor mit dem LED Kommando erreichen?*
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

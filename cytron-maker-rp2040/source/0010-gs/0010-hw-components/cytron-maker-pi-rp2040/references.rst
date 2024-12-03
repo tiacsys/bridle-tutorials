@@ -21,7 +21,7 @@ Referenzen
 
 - `Bridle Documentation`_
 
-  - `ARM Boards ⯈ Cytron Maker RP2040`_
+  - `Supported Boards ⯈ Cytron Technologies ⯈ Cytron Maker RP2040`_
 
 .. target-notes::
 
@@ -50,7 +50,7 @@ Referenzen
    https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf
 
 .. _`RP2040 Technical Documentation`:
-   https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html
+   https://www.raspberrypi.com/documentation/microcontrollers/silicon.html#rp2040
 
 .. _`RP2040 Minimal Design Example (KiCAD)`:
    https://datasheets.raspberrypi.com/rp2040/Minimal-KiCAD.zip
@@ -64,5 +64,7 @@ Referenzen
 .. _`Bridle Documentation`:
    https://bridle.tiac-systems.net/
 
-.. _`ARM Boards ⯈ Cytron Maker RP2040`:
-   https://bridle.tiac-systems.net/doc/latest/bridle/boards/arm/cytron_rp2040/doc/index.html
+.. _`Supported Boards ⯈ Cytron Technologies ⯈ Cytron Maker RP2040`:
+   https://bridle.tiac-systems.net/doc/latest/bridle/boards/cytron/maker_rp2040/doc/index.html
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

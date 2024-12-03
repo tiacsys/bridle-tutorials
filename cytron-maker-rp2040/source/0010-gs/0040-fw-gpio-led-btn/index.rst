@@ -17,13 +17,13 @@ Testen der Benutzer-LED und Taste
    Gehe davon aus, dass dieser Aufbau für eine professionelle Arbeit mit Zephyr
    ausreicht und so auch millionenfach zum Einsatz kommt. Du kannst bereits:
 
-   - UF2 Firmware in den Permanentspeicher (Flash) am RP2040 laden
-   - mit einer Firmware über UART kommunizieren
+   - UF2 Firmware in den Permanentspeicher (Flash) laden, und
+   - und mit der Firmware über einen UART kommunizieren.
 
-   In dieser Übung wollen wir uns nun den Arbeitsablauf für die Entwicklung
-   von Zephyr Applikationen auf deinem Host-PC genauer ansehen und lernen. Auch
-   hier werden wir zunächst nur die absoluten Grundlagen kennenlernen, Begriffe,
-   Verfahren und Vorgehen klären und nicht gleich die großen "Hacks" bewegen.
+   In dieser Übung wollen wir den Arbeitsablauf für die Entwicklung von Zephyr
+   Applikationen auf deinem Host-PC erlernen. Auch hier werden wir zunächst nur
+   die absoluten Grundlagen kennenlernen sowie Begriffe, Verfahren und Vorgehen
+   klären und nicht gleich die großen "Hacks" bewegen.
 
    Was liegt da näher, als sich des umfangreichen Fundus an Beispielen von
    Zephyr direkt zu bedienen? In dieser Übung wirst du deine ersten Erfahrungen
@@ -55,7 +55,7 @@ Testen der Benutzer-LED und Taste
       solche Umgebung auch auf deinem eigenen Host-PC einrichten.
       **Aber Achtung:** wir empfehlen dir eindringlich die Arbeit unter Linux.
       Anleitungen dazu findest du in der
-      :ref:`Bride Dokumentation <bridle:gs_installing>` und im
+      :ref:`Bridle Dokumentation <bridle:gs_installing>` und im
       :ref:`Zephyr Getting Started Guide <zephyr:getting_started>`
 
 .. rubric:: Wissenswertes
@@ -65,22 +65,22 @@ Wenn du dich zunehmend mit Zephyr beschäftigst, wirst du lernen, dass hinter de
 Mikrocontroller und Computer steckt. Vielmehr handelt es sich um ein ganzes
 Ökosystem an Softwarequellen, Bibliotheken, Subsystemen, Werkzeugen, Regeln und
 Projektstrukturen sowie der dazugehörigen Dokumentation.
-Der :ref:`Zephyr Glossar <zephyr:glossary>` bietet dir zu den wichtigsten, auch
+Das :ref:`Zephyr Glossar <zephyr:glossary>` bietet dir zu den wichtigsten, auch
 von uns hier benutzten, Begriffen einen ersten kompakten Überblick. Wir wollen
 an dieser Stelle die wichtigsten Begriffe und damit verbundenen Methoden
 :spelling:ignore:`bzw.` Funktionen kurz erläutern.
 
 :Applikation :spelling:ignore:`vs.` Board:
    Zephyr unterscheidet strikt zwischen (1) den Softwarequellen für eine
-   :term:`Applikation <zephyr:application>` und (2) den Hardware abhängigen
-   Softwarequellen, allgemein einem :term:`Board <zephyr:board>` zugeordnet.
-   Prinzipbedingt liegt es auf der Hand, dass man die verschiedenen Hardware
-   abhängigen Softwarequellen niemals alleine für sich übersetzen und zur
-   Ausführung bringen kann. Es wird immer ein applikativer Softwareteil
+   :term:`Applikation <zephyr:application>` und (2) den hardwarespezifischen
+   Softwarequellen, die allgemein einem :term:`Board <zephyr:board>`
+   zugeordnet sind. Diese hardwarespezifische Software kann nicht alleinstehend
+   ausgeführt werden. Stattdessen wird immer ein applikativer Softwareteil
    benötigt, eine Applikation, auch wenn diese nur aus einer leeren ``main()``
-   Funktion besteht. Eine **gewöhliche Zephyr Firmware** muss mit **Benennung
+   Funktion besteht. Eine **gewöhliche Zephyr Firmware** muss unter **Benennung
    eines Boards und einer Applikation** übersetzt werden. Die Dokumentation von
-   Bridle und Zephyr pflegt entsprechende Listen:
+   Bridle und Zephyr pflegt Listen über unterstützte Boards und
+   Beispielapplikationen:
 
    #. Beispiele und Demonstrationen:
 
@@ -112,19 +112,20 @@ an dieser Stelle die wichtigsten Begriffe und damit verbundenen Methoden
 
    Keine Angst, wir tauchen an dieser Stelle nicht in diesen technologischen
    Makrokosmos ein. Dir soll nur bewusst sein, dass sich hinter all diesen
-   essentiell wichtigen und **notwendigen Schritten** zum Einen sehr viele
-   **bewährte Verfahren (best practices)** etabliert und zum Anderen sehr
-   viele **unterschiedliche Werkzeuge und Vorgehensmodelle** je nach Art
-   deiner Applikation und Zielarchitektur (Hardware-Vorgaben) etabliert haben.
+   essentiell wichtigen und **notwendigen Schritten** eine Reihe
+   **bewährter Verfahren (best practices)** dazu gehörende **Werkzeuge und
+   Vorgehensmodelle** etabliert haben. Diese variieren gegebenenfalls je nach
+   Art deiner Applikation und der Zielarchitektur (Hardware-Vorgaben).
+
    Jeder Punkt für sich stellt prinzipbedingt verschiedene Schnittstellen für
    die Bedienung bereit. Diese Schnittstellen müssen erlernt werden, was zum
    Teil eine längerfristige und mit unter frustrierende Angelegenheit sein
    kann (z.B. GNU C/C++ :spelling:ignore:`vs.` LLVM/Clang oder Doxygen
    :spelling:ignore:`vs.` Sphinx).
 
-   Zephyr hat daher sehr frühzeitig diesem oft als Problem identifizierten
-   Hindernis entgegengewirkt und das **Meta-Werkzeug** :program:`west`
-   etabliert. Dir wird dieses Werkzeug im Folgende begegnen, um:
+   Das Zephyr-Ökosystem umfasst unter anderem das **Meta-Werkzeug**
+   :program:`west`, das die oben angesprochenen Prozessschritte unterstützt.
+   Dir wird dieses Werkzeug im Folgenden begegnen, um:
 
    - eine Zephyr Firmware "zu bauen": :program:`west build …`
    - eine Zephyr Firmware "auszuliefern": :program:`west flash …`
@@ -157,3 +158,5 @@ an dieser Stelle die wichtigsten Begriffe und damit verbundenen Methoden
    samples/blinky
    samples/fade
    samples/button
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

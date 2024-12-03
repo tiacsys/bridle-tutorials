@@ -1,3 +1,13 @@
+.. rst-class:: page-break
+
+   .. only:: rinoh
+
+      |nbsp|
+.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
+   'page-break-paragraph' react as expected. But the '.. rubric::' directive
+   should also be handled as a 'ParagraphStyle' and trigger that class, But
+   it doesn't work as expected. Fix this later!
+
 .. rubric:: UF2 Upload-Modus
 
 Wenn immer in dieser Anleitung der Text mit dem **UF2(RP2040) Symbol**
@@ -27,9 +37,19 @@ hältst, um in den *UF2 Upload-Modus* (Bootloader) zu gelangen.
 
    ``BOOT`` und ``RST`` Tasten auf dem *Cytron – Maker Pi RP2040*
 
+.. rst-class:: page-break
+
+   .. only:: rinoh
+
+      |nbsp|
+.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
+   'page-break-paragraph' react as expected. But the '.. rubric::' directive
+   should also be handled as a 'ParagraphStyle' and trigger that class, But
+   it doesn't work as expected. Fix this later!
+
 .. rubric:: Durchführung
 
-#. Flash Resetting zu Beginn
+#. Vorbereitung: Löschen des Flash-Inhalts
 
    .. admonition:: Flash Resetting
       :class: important green-thick-border
@@ -43,11 +63,11 @@ hältst, um in den *UF2 Upload-Modus* (Bootloader) zu gelangen.
 
             :file:`flash_nuke.uf2`
 
-         von deinem Host-PC aus in das dort neu entstandene Laufwerk:
+         von deinem Host-PC aus auf das neu erschienene Laufwerk:
 
             :file:`RPI-RP2`
 
-         und somit auf das *MCU-Board*.
+         Die Firmwaredatei wird somit auf das *MCU-Board* kopiert.
 
          Du kannst das mit grafischen Hilfsmitteln machen, so wie in der
          folgenden Abbildung als Beispiel unter Windows 11 gezeigt, oder mit
@@ -55,10 +75,12 @@ hältst, um in den *UF2 Upload-Modus* (Bootloader) zu gelangen.
 
             cp ~/Downloads/flash_nuke.uf2 /media/<dein_user_name>/RPI-RP2/
 
-      #. Warte nun etwa eine Minute, bis der Flash komplett gelöscht ist. Du
-         wirst es daran erkennen, dass an deinem Host-PC das Laufwerk
-         :file:`RPI-RP2` wieder erscheint, da im Permanentspeicher (Flash)
-         des MCU-Board keine Firmware mehr vorhanden ist.
+      #. Das Laufwerk mit dem Namen :file:`RPI-RP2` wird nun wieder
+         verschwinden, und das MCU-Board wird sich neu starten. Warte nun etwa
+         eine Minute, bis der Flash komplett gelöscht ist. Du wirst es daran
+         erkennen, dass an deinem Host-PC das Laufwerk :file:`RPI-RP2` wieder
+         erscheint, da im Permanentspeicher (Flash) des MCU-Board keine
+         Firmware mehr vorhanden ist.
 
    .. list-table::
       :align: center
@@ -98,17 +120,15 @@ hältst, um in den *UF2 Upload-Modus* (Bootloader) zu gelangen.
    .. image:: /_images/symbol-rp2040-cpdsk-gn.*
       :class: sidecar
 
-#. Kopiere jetzt das *CircuitPython OOTB Demo*, **den Inhalt** folgender
-   **ZIP Datei**:
+#. Entpacke nun **den Inhalt** folgender **ZIP-Datei** auf deinem Host-PC:
 
       :file:`CP-cytron_maker_pi_rp2040-ootb-demo.zip`
 
-   von deinem Host-PC auf den Speicherbereich von *CircuitPython*, das dort
-   neu entstandene Laufwerk:
+   und kopiere alle entpackten Dateien und Verzeichnisse auf das neue Laufwerk
+   :file:`CIRCUITPY`. Bereits **existierende Dateien und Verzsichnisse müssen**
+   dabei **überschrieben werden**!
 
-      :file:`CIRCUITPY`
-
-   und somit auch auf das *MCU-Board*.
+   Nun befindet sich die *CircuitPython OOTB Demo* im Flash-Speicher des RP2040.
 
    .. list-table::
       :align: center
@@ -117,14 +137,22 @@ hältst, um in den *UF2 Upload-Modus* (Bootloader) zu gelangen.
       * - .. image:: /_images/doing/w11-circuitpy-ootb-demo-copy.*
              :align: center
 
-#. Dein MCU-Board muss jetzt wieder automatisch neu starten und sofort das
-   originale OOTB Demo innerhalb von CiruitPython ausführen. Schaue und höre
-   genau hin, was passiert. Drücke auch die beiden dicht nebeneinander
-   liegenden Tasten mit den Bezeichnungen ``GP20`` und ``GP21`` auf der
-   rechten Hälfte des MCU-Boards und beobachte. Ein Neustart dieses Demos kann
-   erwartungsgemäß durch kurzes drücken auf die ``RST`` Taste erreicht werden.
+#. Dein MCU-Board muss jetzt manuell neu gestartet werden, indem du entweder
+   kurz die ``RST``-Taste drückst, oder das Board mit dem ON-OFF-Schalter aus-
+   und wieder einschaltest. Nach dem Neustart wird die *CircuitPython OOTB
+   Demo* automatisch ausgeführt. Beobachte, wie sich das MCU-Board verhält: du
+   wirst einen Unterschied feststellen!
+   Drücke auch die beiden dicht nebeneinander liegenden Tasten mit den
+   Bezeichnungen ``GP20`` und ``GP21`` auf der rechten Hälfte des MCU-Boards
+   und beobachte, wie sich das Board verhält. Wenn du die Demo-Anwendung neu
+   starten möchtest, kannst du das durch kurzes Drücken auf die ``RST`` Taste
+   tun.
 
-#. Flash Resetting am Ende
+#. Abschluss: Löschen des Flash-Inhalts
+
+   Wie bereits weiter oben erläutert, solltest du nach Abschluss dieser Aufgabe
+   den Flash-Inhalt deines MCU-Boards wieder vollständig löschen, um
+   unerwünschte Effekte auf die folgenden Übungen zu vermeiden:
 
    .. admonition:: Flash Resetting
       :class: important green-thick-border
@@ -145,3 +173,5 @@ hältst, um in den *UF2 Upload-Modus* (Bootloader) zu gelangen.
          und somit auf das *MCU-Board*.
 
       #. Warte, bis der Flash komplett gelöscht ist.
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

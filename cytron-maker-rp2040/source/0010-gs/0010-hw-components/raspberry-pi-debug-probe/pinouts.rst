@@ -29,3 +29,5 @@ Anschlüsse
    * - **3**
      - ``TxD`` (Transmit Data, output)
      - ``SD`` (Serial Data, bidirectional)
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

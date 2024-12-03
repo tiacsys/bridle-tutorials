@@ -53,3 +53,5 @@ Die **Benutzer-LED an GP7 blinkt**, in etwa im Sekundentakt.
    :download:`GS-cytron_maker_pi_rp2040-uartcons-blinky.uf2
    </_assets/GS-cytron_maker_pi_rp2040-uartcons-blinky.uf2>`
    – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

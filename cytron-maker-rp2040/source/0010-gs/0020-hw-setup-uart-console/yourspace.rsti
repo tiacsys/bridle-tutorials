@@ -63,3 +63,5 @@
    *z.B.: Warum sind* ``GP0`` *und* ``GP1`` *jeweils* ``TxD`` *und* ``RxD``
    *der ersten seriellen Schnittstelle (*\ ``UART0``\ *) und nicht einfache
    General Purpose In-/Outputs (GPIO) der MCU?*
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

@@ -160,3 +160,5 @@ Gib nacheinander ein und kontrolliere die Rückgabewerte:
    – als Not-Backup gedacht!
 
 .. [#] https://asairsensors.com/wp-content/uploads/2021/09/Data-Sheet-AHT20-Humidity-and-Temperature-Sensor-ASAIR-V1.0.03.pdf
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

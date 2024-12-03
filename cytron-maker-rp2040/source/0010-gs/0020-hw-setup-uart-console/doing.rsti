@@ -1,13 +1,46 @@
+.. rst-class:: page-break
+
+   .. only:: rinoh
+
+      |nbsp|
+.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
+   'page-break-paragraph' react as expected. But the '.. rubric::' directive
+   should also be handled as a 'ParagraphStyle' and trigger that class, But
+   it doesn't work as expected. Fix this later!
+
 .. rubric:: Durchführung
 
 #. Suche dir alle notwendigen Hardwarekomponenten aus der Box zusammen.
 
-#. Beginne mit der Verbindung des **USB Debug-Adapters** über den **USB Hub**
-   und dem **orangenen USB Kabel** an deinem **Host-PC**.
+#. Beginne mit der Verbindung des **USB Debug-Adapters** über den **USB-Hub**
+   und dem **orangenen USB-Kabel** an deinem **Host-PC**.
 
 #. Finde heraus, ob du prinzipiell mit deinem **Terminalemulator** die neue
    **serielle Schnittstelle** des USB Debug-Adapters **auswählen und öffnen**
    kannst.
+
+   .. admonition:: Terminaleinstellungen
+      :class: info
+
+      In deinem Terminalemulator müssen Einstellungen vorgenommen werden, damit
+      die Verbindung zum MCU-Board hergestellt werden kann. Stelle folgenden
+      Einstellungen in deinem Terminalemulator sicher:
+
+      .. list-table::
+         :align: center
+         :width: 80%
+         :widths: 12, 22, 12, 22
+
+         * - Baudrate:
+           - **115200**
+           - Parität:
+           - **keine**
+         * - Datenbits:
+           - **8**
+           - Stopbit:
+           - **1**
+
+      Man bezeichnet diese Kombination auch als ``115200 8N1``.
 
    Die folgenden drei Abbildungen zeigen das beispielhaft mit *Tabby* als
    Terminalemulator unter Windows 11 und der durch Windows vergebenen ``COM3``
@@ -40,19 +73,20 @@
    **größeren Stecker** (Grove System Connector) in die **mit "GROVE 1"
    gekennzeichnete Buchse am MCU-Board**.
 
-#. **Verbinde** zum Schluss das **MCU-Board** über den **USB Hub** und dem
-   **günen USB Kabel** mit deinem **Host-PC**. Achte darauf, dass am MCU-Board
-   der **Stromversorgungsschalter** auf der Position **"OFF"** steht
-   (der Schiebeschalter oberhalb der USB-Buchse).
+#. **Verbinde** zum Schluss das **MCU-Board** über den **USB-Hub** und dem
+   **günen USB-Kabel** mit deinem **Host-PC**. Achte darauf, dass am MCU-Board
+   der **Stromversorgungsschalter** (Schiebeschalter neben der USB-Buchse) auf
+   der Position **"OFF"** steht.
 
    .. figure:: /_images/doing/cytron-maker-pi-rp2040-power.*
       :name: cytron-maker-pi-rp2040-power
 
       Stromversorgungsschalter auf dem *Cytron – Maker Pi RP2040*
 
-#. Bringe deine bereits laufende **Sitzung im Terminalemulator** in den
-   Vordergrund und schiebe dann den **Stromversorgungsschalter** am MCU-Board
-   auf die Position **"ON"**. Nun muss folgende Ausgabe im Terminalemulator
+#. Stelle nun sicher, dass du die **Sitzung im Terminalemulator**, die du oben
+   konfiguriert und geöffnet hast, auf deinem Host-PC sehen kannst. Schalte
+   jetzt das MCU-Board ein, indem du den **Stromversorgungsschalter** auf die
+   Position **"ON"** stellst. Nun muss folgende Ausgabe im Terminalemulator
    zu sehen sein::
 
       MicroPython v1.23.0-preview … … …; Raspberry Pi Pico with RP2040
@@ -69,19 +103,20 @@
       * - .. image:: /_images/tabby/w11-rpi-dbgprobe-uart-console-io-working.*
              :align: center
 
-#. Ja, in der Tat. Das ist Python! **Tippe doch einfach mal** ``help()`` **ein**,
-   um zu überprüfen, dass dein Terminalemulator mit dem USB Debug-Adapter auch
-   wirklich in beide Richtungen funktioniert und du nicht eventuell in deinem
-   Aufbau eine Leitung vergessen oder falsch verbunden hast. Du musst etwas wie
-   ``Welcome to MicroPython!`` zurückbekommen.
+#. Ja, in der Tat. Das ist Python! **Tippe doch einfach mal** ``help()`` **ein**
+   und drücke die :kbd:`ENTER`-Taste. Damit kannst du überprüfen, ob dein
+   Terminalemulator mit dem USB Debug-Adapter auch wirklich in beide Richtungen
+   funktioniert und du nicht eventuell in deinem Aufbau eine Leitung vergessen
+   oder falsch verbunden hast. Im Terminalemulator muss nun eine Ausgabe ähnlich
+   zu ``Welcome to MicroPython!`` erscheinen.
 
 .. rubric:: Zugabe
 
 Auch wenn wir uns hier (noch) nicht mit Python unter Zephyr beschäftigen, kannst
 du gerne die folgenden kleinen Beispiele direkt **in die MicroPython Console
-kopieren** und sehen, was passiert. Bitte auch immer auf das letzte :kbd:`ENTER`
-achten. Laufende Python Scripte können ganz einfach mit :kbd:`Ctrl-C` beendet
-werden.
+kopieren** und sehen, was passiert. Bitte achte darauf, auch immer die letzte
+Zeile mit der :kbd:`ENTER`-Taste zu beenden. Laufende Python Scripte können ganz
+einfach mit :kbd:`Ctrl-C` beendet werden.
 
 :Say Hello:
 
@@ -144,3 +179,5 @@ werden.
               led_ports[i].high()
               time.sleep(delay)
               led_ports[i].low()
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

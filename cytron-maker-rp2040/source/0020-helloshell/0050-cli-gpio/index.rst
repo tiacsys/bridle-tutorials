@@ -32,3 +32,5 @@ sind für jedes einzelne GPIO in einem System durch das Shell Kommando
 .. include:: bom.rsti
 .. include:: assembly.rsti
 .. include:: doing.rsti
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

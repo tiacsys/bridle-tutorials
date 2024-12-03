@@ -20,3 +20,5 @@
        :doc:`zephyr:samples/basic/blinky_pwm/README`,
        :doc:`zephyr:samples/basic/fade_led/README` und
        :doc:`zephyr:samples/basic/button/README`.
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

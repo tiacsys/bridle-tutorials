@@ -16,3 +16,5 @@
    Zeitstempel in eckigen Klammern beginnen? Also das hier:*
    "``[00:00:00.288,000] <wrn> udc_rpi: BUS RESET``" oder
    "``[00:00:04.002,000] <inf> main: Displaying pattern on strip``"
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

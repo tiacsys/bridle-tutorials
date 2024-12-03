@@ -65,3 +65,5 @@ Die **beiden RGB-LEDs** (``0`` und ``1``) an den Rändern deines MCU-Boards
    :download:`GS-cytron_maker_pi_rp2040-usbcons-led_ws2812.uf2
    </_assets/GS-cytron_maker_pi_rp2040-usbcons-led_ws2812.uf2>`
    – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

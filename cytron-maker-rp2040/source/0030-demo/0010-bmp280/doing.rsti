@@ -75,3 +75,5 @@ zu einer konkreten Hardware kann immer wieder benutzt werden.**
    :download:`grove_i2c-bmp280@77.overlay
    </_assets/grove_i2c-bmp280@77.overlay>`
    – als Not-Backup gedacht!
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

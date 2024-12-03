@@ -45,3 +45,5 @@ Referenzen
 
 .. _`Raspberry Pi Pico Probe`:
    https://github.com/raspberrypi/picoprobe
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

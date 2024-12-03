@@ -46,3 +46,5 @@ Kontrolle ab, noch wird ein Entwickler daran gehindert, eine Applikation zu
 .. include:: bom.rsti
 .. include:: assembly.rsti
 .. include:: doing.rsti
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

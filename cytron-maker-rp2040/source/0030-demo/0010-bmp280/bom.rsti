@@ -27,3 +27,5 @@
    * - **Software:**
      - Du wirst eine neue Zephyr UF2 Firmware bauen, das Zephyr Beispiel
        :doc:`zephyr:samples/sensor/bme280/README`.
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

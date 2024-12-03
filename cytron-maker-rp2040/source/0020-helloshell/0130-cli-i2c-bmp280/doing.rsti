@@ -168,3 +168,5 @@ Gib nacheinander ein und kontrolliere die Rückgabewerte:
    – als Not-Backup gedacht!
 
 .. [#] https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

@@ -54,3 +54,5 @@ Siehe dazu auch die folgenden Abschnitte in der Zephyr Dokumentation:
 .. include:: doing.rsti
 
 .. target-notes::
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
