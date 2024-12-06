@@ -1,7 +1,7 @@
 .. _hs-cli-i2c-aht20:
 
-Shell-Kommando ``i2c`` für T/H-Sensor (AHT20)
-#############################################
+Shell-Kommando ``i2c`` für AHT20
+################################
 
 .. sidebar:: Ziel
 
@@ -15,6 +15,8 @@ Shell-Kommando ``i2c`` für T/H-Sensor (AHT20)
    von ASAIR operieren. Dabei wirst du die notwendigen Informationen aus dem
    Datenblatt des Sensors entnehmen und die Anweisungen für einen Messvorgang
    manuell durch eine Folge von Kommandos durchlaufen.
+
+.. rst-class:: page-break
 
 .. include:: bom.rsti
 .. include:: assembly.rsti
