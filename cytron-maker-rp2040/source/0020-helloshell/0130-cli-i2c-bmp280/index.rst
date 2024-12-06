@@ -1,7 +1,7 @@
 .. _hs-cli-i2c-bmp280:
 
-Shell-Kommando ``i2c`` für Drucksensor (BMP280)
-###############################################
+Shell-Kommando ``i2c`` für BMP280
+#################################
 
 .. sidebar:: Ziel
 
@@ -15,6 +15,8 @@ Shell-Kommando ``i2c`` für Drucksensor (BMP280)
    von Bosch operieren. Dabei wirst du die notwendigen Informationen aus dem
    Datenblatt des Sensors entnehmen und die Anweisungen für einen Messvorgang
    manuell durch eine Folge von Kommandos durchlaufen.
+
+.. rst-class:: page-break
 
 .. include:: bom.rsti
 .. include:: assembly.rsti

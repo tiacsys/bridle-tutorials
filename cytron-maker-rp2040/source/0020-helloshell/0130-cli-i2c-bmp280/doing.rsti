@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -13,13 +14,10 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
    :bgn:`uart:~$` _
 
-.. rst-class:: page-break
-
------------------------------------------------------------------------------
-
 .. ..... INFO ...............................................................
 
-.. rubric:: Messprozess laut Datenblatt
+Messprozess laut Datenblatt
+===========================
 
 Ein erster Blick in das Datenblatt\ [#]_ des Herstellers offenbart ein recht
 komplexes Innenleben des Sensors BMP280. Der Sensor verfügt über 4 verschiedene
@@ -50,6 +48,7 @@ Für den Aufbau der I²C Kommandos schauen wir kurz auf die Registerbank im
 Sensor, im Datenblatt auf Seite 24 im Anschnitt *"4.2 Memory map"*:
 
 .. figure:: /_images/doing/bst-bmp280-ds001-i2c-regmap.*
+   :name: bst-bmp280-ds001-i2c-regmap
    :align: center
 
    Bosch BMP280 Datenblatt: *"I²C Register Memory Map"*
@@ -59,15 +58,22 @@ ob der Sensor überhaupt am I²C Bus erreichbar ist (Register **id**), dann eine
 einzelne Messung starten (Register **ctrl_meas**), die Daten lesen (Register
 **temp_msb** bis **temp_xlsb**) und eine Berechnung durchführen.
 
-Wir werden nur den ganzzahligen Wert für die Temperatur ``UT`` ermitteln und
-diese mit der folgenden Überschlagsrechnung sehr grob berechnen:
+.. compound::
 
-.. parsed-literal::
-   :class: text
+   Wir werden nur den ganzzahligen Wert für die Temperatur ``UT`` ermitteln und
+   diese mit der folgenden Überschlagsrechnung sehr grob berechnen:
 
-           **T[°C]** ≈ *UT* ÷ 20000°C⁻¹                             | ± 5°C
+   .. parsed-literal::
+      :class: text
 
-.. rst-class:: page-break
+            **T[°C]** ≈ *UT* ÷ 20000°C⁻¹                             | ± 5°C
+
+Messprozess manuell durchführen
+===============================
+
+Gib nacheinander ein und kontrolliere die Rückgabewerte:
+
+.. rubric:: Sensor-ID kontrollieren:
 
 -----------------------------------------------------------------------------
 
@@ -76,16 +82,21 @@ diese mit der folgenden Überschlagsrechnung sehr grob berechnen:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Messprozess manuell durchführen
-
-Gib nacheinander ein und kontrolliere die Rückgabewerte:
-
-1. **Sensor-ID kontrollieren:**
+.. compound::
 
    .. parsed-literal::
       :class: code
 
       i2c :brd:`read_byte` i2c@40044000 77 :brd:`d0`
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
 
    :ign:`Folgendes wird erscheinen:`
 
@@ -94,33 +105,67 @@ Gib nacheinander ein und kontrolliere die Rückgabewerte:
 
       Output: :bbl:`0x58`
 
-   Dieser Wert muss für einen **BMP280 immer** ``0x58`` sein. Sollte
-   aus Versehen der teurere *BME280* angeschlossen sein, dann ist dieser
-   Wert ``0x60``!
+Dieser Wert muss für einen **BMP280 immer** ``0x58`` sein. Sollte
+aus Versehen der teurere *BME280* angeschlossen sein, dann ist dieser
+Wert ``0x60``!
 
-2. Kommando um eine (einzelne) **Messung auszulösen senden:**
+.. rubric:: Messung auszulösen:
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Sende Kommando um eine (einzelne) Messung auszulösen:
 
    .. parsed-literal::
       :class: code
 
       i2c :brd:`write` i2c@40044000 77 :brd:`f4` :bbl:`fd`
 
-   Damit wird eine einzelne Messung sowohl der Temperatur als auch des Drucks
-   mit jeweils 20-bit Genauigkeit ausgelöst. Danach geht der Sensor selbständig
-   in den Betriebsmodus *Sleep* zurück, kann aber ausgelesen werden.
+Damit wird eine einzelne Messung sowohl der Temperatur als auch des Drucks
+mit jeweils 20-bit Genauigkeit ausgelöst. Danach geht der Sensor selbständig
+in den Betriebsmodus *Sleep* zurück, kann aber ausgelesen werden.
 
-3. **Messung abwarten:** Da du alles manuell machst, wird die **erforderliche
-   Wartezeit von etwa 45ms** schon durch kopieren oder eintippen des nächsten
-   Kommandos vorüber sein. Setze also gleich mit den nächsten Schritten
-   fort.
+.. rubric:: Messung abwarten:
 
-4. **Messdaten vom Sensor lesen:** Das sind insgesamt 3 Byte Daten für den
-   ganzzahligen Wert der Temperatur ab der I²C Register-Adresse ``0xfa``:
+Da du alles manuell machst, wird die **erforderliche Wartezeit von etwa 45ms**
+schon durch kopieren oder eintippen des nächsten Kommandos vorüber sein. Setze
+also gleich mit den nächsten Schritten fort.
+
+.. rubric:: Messdaten vom Sensor lesen:
+
+Das sind insgesamt 3 Byte Daten für den ganzzahligen Wert der Temperatur
+ab der I²C Register-Adresse ``0xfa``:
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Du musst also insgesamt 3 Byte vom Sensor über I²C lesen:
 
    .. parsed-literal::
       :class: code
 
       i2c :brd:`read` i2c@40044000 77 :brd:`fa` :bbl:`3`
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
 
    :ign:`Folgendes wird (so ähnlich) erscheinen:`
 
@@ -129,33 +174,38 @@ Gib nacheinander ein und kontrolliere die Rückgabewerte:
 
       00000000: **82 5c 70**                          \|.\p              \|
 
-   Mit diesem HEX-Dump kannst du nun laut der Abbildung den ganzzahligen Wert
-   für die Temperatur herauslesen und aufschreiben:
+Mit diesem HEX-Dump kannst du nun laut der :numref:`bst-bmp280-ds001-i2c-regmap`
+den ganzzahligen Wert für die Temperatur herauslesen und aufschreiben:
 
-   .. admonition:: Deine Gedankenstütze
-      :class: question
-      :collapsible: open
+.. admonition:: Deine Gedankenstütze
+   :class: question
+   :collapsible: open
 
-      +------------------------+----------------------------+--------+--------------+--------------+
-      |                        |             *Tutorial*              |          **DEINE**          |
-      | Wert / Abkürzung       +----------------------------+--------+--------------+--------------+
-      |                        |            HEX             |  DEZ   |     HEX      |     DEZ      |
-      +==============+=========+============================+========+==============+==============+
-      | Temperatur   | ``UT``  | :spelling:ignore:`0x825c7` | 533959 |``__________``|``__________``|
-      +--------------+---------+----------------------------+--------+--------------+--------------+
+   +------------------------+----------------------------+--------+--------------+--------------+
+   |                        |             *Tutorial*              |          **DEINE**          |
+   | Wert / Abkürzung       +----------------------------+--------+--------------+--------------+
+   |                        |            HEX             |  DEZ   |     HEX      |     DEZ      |
+   +==============+=========+============================+========+==============+==============+
+   | Temperatur   | ``UT``  | :spelling:ignore:`0x825c7` | 533959 |``__________``|``__________``|
+   +--------------+---------+----------------------------+--------+--------------+--------------+
 
-5. **Berechnung durchführen:** setze nun den Werte von deiner Messung in die
-   oben genannten Formeln ein und berechne die Temperatur. Hier ist ein Beispiel
-   und Platz für deine eigene Berechnung:
+Berechnung durchführen
+======================
+
+Setze nun den Werte von deiner Messung in die oben genannten Formeln ein
+und berechne die Temperatur. Hier ist ein Beispiel und Platz für deine
+eigene Berechnung:
+
+.. compound::
 
    .. parsed-literal::
       :class: text
 
-              **T[°C]** ≈ *UT* ÷ 20000°C⁻¹
-                    ≈ **533959** ÷ 20000°C⁻¹ ≈ 26,69795°C         | ± 5°C
+            **T[°C]** ≈ *UT* ÷ 20000°C⁻¹
+                  ≈ **533959** ÷ 20000°C⁻¹ ≈ 26,69795°C         | ± 5°C
 
-              **T[°C]** ≈ *UT* ÷ 20000°C⁻¹
-                    ≈ __________ ÷ 20000°C⁻¹ ≈ __________°C   | ± 5°C
+            **T[°C]** ≈ *UT* ÷ 20000°C⁻¹
+                  ≈ __________ ÷ 20000°C⁻¹ ≈ __________°C   | ± 5°C
 
 .. include:: yourspace.rsti
 
