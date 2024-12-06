@@ -117,6 +117,7 @@ needs_extensions = {
     'sphinx.ext.intersphinx':       needs_sphinx,
     'sphinx.ext.todo':              needs_sphinx,
 #   'sphinx_immaterial':            '0.12.4',
+    'sphinx_togglebutton':          '0.3.2',
     'sphinxcontrib.spelling':       '8.0.0',
 }
 
@@ -126,6 +127,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx_immaterial',
+    'sphinx_togglebutton',
     'sphinxcontrib.spelling',
 ]
 
