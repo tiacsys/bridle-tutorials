@@ -28,55 +28,48 @@ Shell-Kommando ``i2c``
    erforschen, bevor du in der :ref:`folgenden Übung <hs-cli-i2c-bmp280>` auf
    die Rohdaten in einem I²C Gerät zugreifen wirst.
 
-.. rubric:: Wissenswertes
+.. admonition:: Wissenswertes
+   :class: worth-knowing note
+   :collapsible:
 
-Die :ref:`Zephyr I²C API <zephyr:i2c_api>` unterstützt die wichtigsten
-funktionalen Eigenschaften des I²C Bus-Protokolls. Das sind: *Speed-Standard*,
-*Speed-Fast*, *Speed-Fast-Plus*, *Speed-High*, *Speed-Ultra*, *Address-10Bit*,
-*Transfer-Read*, *Transfer-Write*, *Transfer-Write-Read* und *Bus-Recover*.
-Alle diese Eigenschaften sind für jeden einzelnen I²C Bus in einem System durch
-das Shell Kommando :bcy:`i2c` zugänglich.
+   Die :ref:`Zephyr I²C API <zephyr:i2c_api>` unterstützt die wichtigsten
+   funktionalen Eigenschaften des I²C Bus-Protokolls. Das sind: *Speed-Standard*,
+   *Speed-Fast*, *Speed-Fast-Plus*, *Speed-High*, *Speed-Ultra*, *Address-10Bit*,
+   *Transfer-Read*, *Transfer-Write*, *Transfer-Write-Read* und *Bus-Recover*.
+   Alle diese Eigenschaften sind für jeden einzelnen I²C Bus in einem System
+   durch das Shell Kommando :bcy:`i2c` zugänglich.
 
-Das von dir benutzte MCU-Board ist mit dem Mikrocontroller **RP2040**
-ausgestattet und bietet dir insgesamt 2 I²C Busse. Der erste davon ist am
-Steckverbinder **GROVE 4** herausgeführt. Wie bei Bussen üblich, wirst du dort
-verschiedene I²C Geräte anschließen können. Der I²C Bus wird zusammen mit den
-Einstellungen für den Betrieb (z.B. Geschwindigkeit) im Devicetree definiert.
+   Das von dir benutzte MCU-Board ist mit dem Mikrocontroller **RP2040**
+   ausgestattet und bietet dir insgesamt 2 I²C Busse. Der erste davon ist am
+   Steckverbinder **GROVE 4** herausgeführt. Wie bei Bussen üblich, wirst du
+   dort verschiedene I²C Geräte anschließen können. Der I²C Bus wird zusammen
+   mit den Einstellungen für den Betrieb (z.B. Geschwindigkeit) im Devicetree
+   definiert.
 
-Hier ein Auszug:
+   Hier ein Auszug:
 
-.. code-block:: DTS
+   .. code-block:: DTS
 
-   &i2c0 {
-     status = "okay";
-     pinctrl-0 = <&i2c0_makerpi>;
-     pinctrl-names = "default";
-     clock-frequency = <I2C_BITRATE_STANDARD>;
-   };
+      &i2c0 {
+        status = "okay";
+        pinctrl-0 = <&i2c0_makerpi>;
+        pinctrl-names = "default";
+        clock-frequency = <I2C_BITRATE_STANDARD>;
+      };
 
-.. rst-class:: page-break
+   .. code-block:: DTS
 
-   .. only:: rinoh
-
-      |nbsp|
-.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
-   'page-break-paragraph' react as expected. But the '.. code-block::' directive
-   should also be handled as a 'ParagraphStyle' and trigger that class, But
-   it doesn't work as expected. Fix this later!
-
-.. code-block:: DTS
-
-   &pinctrl {
-     i2c0_makerpi: i2c0_makerpi {
-       group1617_i2c {
-         pinmux = <I2C0_SDA_P16>, /* GP16: I2C0_SDA */
-                  <I2C0_SCL_P17>; /* GP17: I2C0_SCL */
-         bias-pull-up;
-         input-enable;
-         input-schmitt-enable;
-       };
-     };
-   };
+      &pinctrl {
+        i2c0_makerpi: i2c0_makerpi {
+          group1617_i2c {
+            pinmux = <I2C0_SDA_P16>, /* GP16: I2C0_SDA */
+                     <I2C0_SCL_P17>; /* GP17: I2C0_SCL */
+            bias-pull-up;
+            input-enable;
+            input-schmitt-enable;
+          };
+        };
+      };
 
 .. include:: bom.rsti
 .. include:: assembly.rsti

@@ -1,14 +1,5 @@
-.. rst-class:: page-break
-
-   .. only:: rinoh
-
-      |nbsp|
-.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
-   'page-break-paragraph' react as expected. But the '.. rubric::' directive
-   should also be handled as a 'ParagraphStyle' and trigger that class, But
-   it doesn't work as expected. Fix this later!
-
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -30,9 +21,11 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Schauen wir uns zunächst den Syntax des Kommando :bcy:`i2c` an. Gib ein::
+.. compound::
 
-   i2c -h
+   Schauen wir uns zunächst den Syntax des Kommando :bcy:`i2c` an. Gib ein::
+
+      i2c -h
 
 -----------------------------------------------------------------------------
 
@@ -41,43 +34,48 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`i2c` an. Gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   i2c - I2C commands
-   Subcommands:
+   .. parsed-literal::
+      :class: code
 
-     scan        : Scan I2C devices
+      i2c - I2C commands
+      Subcommands:
 
-                   Usage: scan <device>
+        scan        : Scan I2C devices
 
-     recover     : Recover I2C bus
+                      Usage: scan <device>
 
-                   Usage: recover <device>
+        recover     : Recover I2C bus
 
-     read        : Read bytes from an I2C device
+                      Usage: recover <device>
 
-                   Usage: read <device> <addr> <reg> [<bytes>]
+        read        : Read bytes from an I2C device
 
-     read_byte   : Read a byte from an I2C device
+                      Usage: read <device> <addr> <reg> [<bytes>]
 
-                   Usage: read_byte <device> <addr> <reg>
+        read_byte   : Read a byte from an I2C device
 
-     write       : Write bytes to an I2C device
+                      Usage: read_byte <device> <addr> <reg>
 
-                   Usage: write <device> <addr> <reg> [<byte1>, ...]
+        write       : Write bytes to an I2C device
 
-     write_byte  : Write a byte to an I2C device
+                      Usage: write <device> <addr> <reg> [<byte1>, ...]
 
-                   Usage: write_byte <device> <addr> <reg> <value>
+        write_byte  : Write a byte to an I2C device
 
-     speed       : Configure I2C bus speed
+                      Usage: write_byte <device> <addr> <reg> <value>
 
-                   Usage: speed <device> <speed>
+        speed       : Configure I2C bus speed
 
-.. rst-class:: page-break
+                      Usage: speed <device> <speed>
+
+Aktuellen HW-Aufbau scannen
+===========================
+
+Legen wir nun mit einem I²C Bus Scan los.
 
 -----------------------------------------------------------------------------
 
@@ -86,11 +84,11 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`i2c` an. Gib ein::
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Aktuellen HW-Aufbau scannen
+.. compound::
 
-Legen wir nun mit einem I²C Bus Scan los. Gib folgendes ein und beobachte::
+   Gib folgendes ein und beobachte::
 
-   i2c scan i2c@40044000
+      i2c scan i2c@40044000
 
 -----------------------------------------------------------------------------
 
@@ -99,26 +97,28 @@ Legen wir nun mit einem I²C Bus Scan los. Gib folgendes ein und beobachte::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-        0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-   00:             -- -- -- -- -- -- -- -- -- -- -- --
-   10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   70: -- -- -- -- -- -- -- 77
-   1 devices found on i2c@40044000
+   .. parsed-literal::
+      :class: code
+
+           0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+      00:             -- -- -- -- -- -- -- -- -- -- -- --
+      10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      30: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      70: -- -- -- -- -- -- -- 77
+      1 devices found on i2c@40044000
 
 **Kontrolliere**, dass du auch die Hexadezimalzahl **77** angezeigt bekommst.
 Sollte das bei dir nicht der Fall sein, dann frage bitte uns Mentoren.
 
-**Woher kommt nun diese Zahl?**
+.. rubric:: Woher kommt nun diese Zahl?
 
 An deinem MCU-Board ist laut Aufbauanleitung das Modul **Seeed Studio – Grove
 - Barometer Sensor BMP280** angeschlossen. Wie der Name es schon suggeriert, ist
@@ -135,13 +135,12 @@ besitzt.
 Entweder ist diese auf :bl:`0x76` oder :rd:`0x77` eingestellt. Der Modulhersteller
 **Seeed Studio hat sich für die I²C Adresse 0x77 entschieden.**
 
-.. rst-class:: page-break
-
------------------------------------------------------------------------------
-
 .. ..... INFO ...............................................................
 
-.. rubric:: I²C Bus Struktur verändern und wieder scannen
+.. rst-class:: page-break
+
+I²C Bus Struktur verändern und wieder scannen
+=============================================
 
 Wollen wir nun ein anderes I²C Gerät anschließen. In deiner Box findest du noch
 das Modul **Seeed Studio – Grove - T/RH Sensor AHT20**. Das hast du bisher noch
@@ -152,8 +151,10 @@ Modul mit dem **AHT20 Sensor an**.
 .. image:: /_images/assemblies/hs-hw-setup-i2c-bmp280-to-aht20.*
    :align: center
 
+.. ..... INFO ...............................................................
+
 .. admonition:: Gut zu wissen
-   :class: info
+   :class: good-to-know info
 
    Du musst dein MCU-Board für diesen Umbau am I²C Bus nicht ausschalten. Das
    Grove Steckersystem schützt dich vor falschen Verbindungen. Wenn du dir aber
@@ -162,6 +163,11 @@ Modul mit dem **AHT20 Sensor an**.
 
 .. rst-class:: page-break
 
+Veränderten HW-Aufbau scannen
+-----------------------------
+
+Wiederholen wir den I²C Bus Scan mit dem veränderten Hardware-Aufbau.
+
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -169,12 +175,11 @@ Modul mit dem **AHT20 Sensor an**.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Veränderten HW-Aufbau scannen
+.. compound::
 
-Wiederholen wir den I²C Bus Scan mit dem veränderten Hardware-Aufbau.
-Gib folgendes ein und beobachte::
+   Gib folgendes ein und beobachte::
 
-   i2c scan i2c@40044000
+      i2c scan i2c@40044000
 
 -----------------------------------------------------------------------------
 
@@ -183,21 +188,23 @@ Gib folgendes ein und beobachte::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-        0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-   00:             -- -- -- -- -- -- -- -- -- -- -- --
-   10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   30: -- -- -- -- -- -- -- -- 38 -- -- -- -- -- -- --
-   40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   70: -- -- -- -- -- -- -- --
-   1 devices found on i2c@40044000
+   .. parsed-literal::
+      :class: code
+
+           0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+      00:             -- -- -- -- -- -- -- -- -- -- -- --
+      10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      30: -- -- -- -- -- -- -- -- 38 -- -- -- -- -- -- --
+      40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      70: -- -- -- -- -- -- -- --
+      1 devices found on i2c@40044000
 
 **Kontrolliere**, dass du auch die Hexadezimalzahl **38** angezeigt bekommst.
 Sollte das bei dir nicht der Fall sein, dann frage bitte uns Mentoren.
@@ -212,13 +219,12 @@ Datenblatt\ [#]_ des Herstellers, von Seite 12, Abschnitt *"7.3 Send Command"*
 
    ASAIR AHT20 Datenblatt: *"I²C Address"*
 
-.. rst-class:: page-break
-
------------------------------------------------------------------------------
-
 .. ..... INFO ...............................................................
 
-.. rubric:: I²C Bus Struktur weiter ausbauen und wieder scannen
+.. rst-class:: page-break
+
+I²C Bus Struktur weiter ausbauen und wieder scannen
+===================================================
 
 Als Abschluss dieser Übung schließt du bitte **beide Sensor-Module am I²C Bus
 deines MCU-Boards** an. Dazu **benötigst du** eine kleine *"Rückverdrahtung"*,
@@ -235,6 +241,11 @@ von deinem MCU-Board **ab**, **stecke dafür** den *"neuen"* **I²C Hub an** und
 
 .. rst-class:: page-break
 
+Veränderten HW-Aufbau scannen
+-----------------------------
+
+Wiederholen wir den I²C Bus Scan mit dem veränderten Hardware-Aufbau.
+
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -242,12 +253,11 @@ von deinem MCU-Board **ab**, **stecke dafür** den *"neuen"* **I²C Hub an** und
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Veränderten HW-Aufbau scannen
+.. compound::
 
-Wiederholen wir den I²C Bus Scan mit dem veränderten Hardware-Aufbau.
-Gib folgendes ein und beobachte::
+   Gib folgendes ein und beobachte::
 
-   i2c scan i2c@40044000
+      i2c scan i2c@40044000
 
 -----------------------------------------------------------------------------
 
@@ -256,33 +266,33 @@ Gib folgendes ein und beobachte::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-        0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
-   00:             -- -- -- -- -- -- -- -- -- -- -- --
-   10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   30: -- -- -- -- -- -- -- -- 38 -- -- -- -- -- -- --
-   40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   70: -- -- -- -- -- -- -- 77
-   2 devices found on i2c@40044000
+   .. parsed-literal::
+      :class: code
+
+           0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+      00:             -- -- -- -- -- -- -- -- -- -- -- --
+      10: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      20: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      30: -- -- -- -- -- -- -- -- 38 -- -- -- -- -- -- --
+      40: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      50: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      60: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+      70: -- -- -- -- -- -- -- 77
+      2 devices found on i2c@40044000
 
 **Kontrolliere**, dass du die beiden Hexadezimalzahlen **38** und **77**
 angezeigt bekommst. Sollte das bei dir nicht der Fall sein, dann frage
 bitte uns Mentoren. Beide I²C Adressen solltest du auch an dieser Stelle
 erwartet haben, oder nicht?
 
------------------------------------------------------------------------------
-
 .. ..... INFO ...............................................................
 
 .. admonition:: Gut zu wissen
-   :class: info
+   :class: good-to-know info
 
    Mit dieser Übung hast du noch keinen wirklichen Datenzugriff auf ein I²C
    Gerät durchgeführt. Auch die :ref:`Zephyr I²C API <zephyr:i2c_api>` hast
