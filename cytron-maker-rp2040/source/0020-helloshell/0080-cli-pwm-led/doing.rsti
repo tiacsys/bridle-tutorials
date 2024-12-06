@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -14,7 +15,7 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    :bgn:`uart:~$` _
 
 .. admonition:: Beachte bitte!
-   :class: red-border failure
+   :class: red-thick-border failure
    :collapsible: open
 
    **PWM kollidiert mit GPIO!**
@@ -24,8 +25,6 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    die GPIO API konfiguriert wurde. Achte daher genau auf das durchgeführte
    Reset (``RST`` Taste kurz gedrückt) an deinem MCU-Board.
 
-.. rst-class:: page-break
-
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -33,9 +32,11 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Schauen wir uns zunächst den Syntax des Kommando :bcy:`pwm` an. Gib ein::
+.. compound::
 
-   pwm -h
+   Schauen wir uns zunächst den Syntax des Kommando :bcy:`pwm` an. Gib ein::
+
+      pwm -h
 
 -----------------------------------------------------------------------------
 
@@ -44,16 +45,50 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`pwm` an. Gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   pwm - PWM shell commands
-   Subcommands:
-     cycles  : <device> <channel> <period in cycles> <pulse width in cycles> [flags]
-     usec    : <device> <channel> <period in usec> <pulse width in usec> [flags]
-     nsec    : <device> <channel> <period in nsec> <pulse width in nsec> [flags]
+   .. parsed-literal::
+      :class: code
+
+      pwm - PWM shell commands
+      Subcommands:
+        cycles  : <device> <channel> <period in cycles> <pulse width in cycles> [flags]
+        usec    : <device> <channel> <period in usec> <pulse width in usec> [flags]
+        nsec    : <device> <channel> <period in nsec> <pulse width in nsec> [flags]
+
+MCU-Board Diagnose-LED an **GP7**
+=================================
+
+Versuchen wir also zunächst die Diagnose-LED an **GP7** :spelling:ignore:`bzw.`
+**PWM Kanal 7** wie in der :ref:`zurückliegenden Übung <hs-cli-led>`, als es
+um die Zephyr LED API ging, nun mit der Zephyr PWM API zu schalten. Dort wurde
+die LED Helligkeit gestaffelt auf 10%, 50% und 100% gestellt. Diese Werte
+müssen wir zunächst gedanklich auf die notwendigen PWM Parameter der Periode
+(Grundfrequenz) und Impulsdauer umrechnen.
+
+.. compound::
+
+   .. rst-class:: page-break
+
+   Damit ergeben sich folgende Werte für die frei gewählte Grundfrequenz
+   von **fₚ = 50Hz**:
+
+   .. table::
+      :align: center
+
+      +----------------+--------------------+-----------------+
+      | LED Helligkeit | Periode *T = 1/fₚ* | Impulsdauer *t* |
+      +================+====================+=================+
+      |         0%     |    20ms = 20000µs  |   0ms = 0µs     |
+      +----------------+--------------------+-----------------+
+      |        10%     |    20ms = 20000µs  |   2ms = 2000µs  |
+      +----------------+--------------------+-----------------+
+      |        50%     |    20ms = 20000µs  |  10ms = 10000µs |
+      +----------------+--------------------+-----------------+
+      |       100%     |    20ms = 20000µs  |  20ms = 20000µs |
+      +----------------+--------------------+-----------------+
 
 -----------------------------------------------------------------------------
 
@@ -61,31 +96,6 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`pwm` an. Gib ein::
 
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
-
-.. rubric:: MCU-Board Diagnose-LED an **GP7**
-
-Versuchen wir also zunächst die Diagnose-LED an **GP7** :spelling:ignore:`bzw.`
-**PWM Kanal 7** wie in der :ref:`zurückliegenden Übung <hs-cli-led>`, als es
-um die Zephyr LED API ging, nun mit der Zephyr PWM API zu schalten. Dort wurde
-die LED Helligkeit gestaffelt auf 10%, 50% und 100% gestellt. Diese Werte
-müssen wir zunächst gedanklich auf die notwendigen PWM Parameter der Periode
-(Grundfrequenz) und Impulsdauer umrechnen. Damit ergeben sich folgende Werte
-für die frei gewählte Grundfrequenz von **fₚ = 50Hz**:
-
-.. table::
-   :align: center
-
-   +----------------+--------------------+-----------------+
-   | LED Helligkeit | Periode *T = 1/fₚ* | Impulsdauer *t* |
-   +================+====================+=================+
-   |         0%     |    20ms = 20000µs  |   0ms = 0µs     |
-   +----------------+--------------------+-----------------+
-   |        10%     |    20ms = 20000µs  |   2ms = 2000µs  |
-   +----------------+--------------------+-----------------+
-   |        50%     |    20ms = 20000µs  |  10ms = 10000µs |
-   +----------------+--------------------+-----------------+
-   |       100%     |    20ms = 20000µs  |  20ms = 20000µs |
-   +----------------+--------------------+-----------------+
 
 Gib nacheinander ein und beobachte::
 
@@ -105,7 +115,25 @@ Die Grundfrequenz von *fₚ = 50Hz* ist ein guter Erfahrungswert für den Einsat
 von LED Beleuchtungen. Die Ladungen innerhalb der LED bewegen sich hierbei im
 Sättigungsbereich und die Trägheit unterdrückt jeglichen *Flicker-Effekt*.
 
-.. rst-class:: page-break
+.. compound::
+
+   Wiederholen wir die Kommandos doch einfach mal mit einer viel tieferen
+   Grundfrequenz von **fₚ = 10Hz**:
+
+   .. table::
+      :align: center
+
+      +----------------+--------------------+------------------+
+      | LED Helligkeit | Periode *T = 1/fₚ* | Impulsdauer *t*  |
+      +================+====================+==================+
+      |         0%     |   100ms = 100000µs |   0ms = 0µs      |
+      +----------------+--------------------+------------------+
+      |        10%     |   100ms = 100000µs |  10ms = 10000µs  |
+      +----------------+--------------------+------------------+
+      |        50%     |   100ms = 100000µs |  50ms = 50000µs  |
+      +----------------+--------------------+------------------+
+      |       100%     |   100ms = 100000µs | 100ms = 100000µs |
+      +----------------+--------------------+------------------+
 
 -----------------------------------------------------------------------------
 
@@ -114,30 +142,14 @@ Sättigungsbereich und die Trägheit unterdrückt jeglichen *Flicker-Effekt*.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Wiederholen wir die Kommandos doch einfach mal mit einer viel tieferen
-Grundfrequenz von **fₚ = 10Hz**:
+.. compound::
 
-.. table::
-   :align: center
+   Gib nacheinander ein und beobachte::
 
-   +----------------+--------------------+------------------+
-   | LED Helligkeit | Periode *T = 1/fₚ* | Impulsdauer *t*  |
-   +================+====================+==================+
-   |         0%     |   100ms = 100000µs |   0ms = 0µs      |
-   +----------------+--------------------+------------------+
-   |        10%     |   100ms = 100000µs |  10ms = 10000µs  |
-   +----------------+--------------------+------------------+
-   |        50%     |   100ms = 100000µs |  50ms = 50000µs  |
-   +----------------+--------------------+------------------+
-   |       100%     |   100ms = 100000µs | 100ms = 100000µs |
-   +----------------+--------------------+------------------+
-
-Gib nacheinander ein und beobachte::
-
-   pwm usec pwm@40050000 7 100000 10000
-   pwm usec pwm@40050000 7 100000 50000
-   pwm usec pwm@40050000 7 100000 100000
-   pwm usec pwm@40050000 7 100000 0
+      pwm usec pwm@40050000 7 100000 10000
+      pwm usec pwm@40050000 7 100000 50000
+      pwm usec pwm@40050000 7 100000 100000
+      pwm usec pwm@40050000 7 100000 0
 
 -----------------------------------------------------------------------------
 
@@ -149,14 +161,8 @@ Gib nacheinander ein und beobachte::
 Wie zu erwarten, ist ein deutliches Flackern zu beobachten, wenn die Pulsdauer
 kleiner 100% eingestellt wird.
 
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-.. rubric:: zusätzlich angeschlossenen LED
+Zusätzlich angeschlossene LED
+=============================
 
 Wollen wir zum Abschluss die Behauptung überprüfen, dass man mit der Zephyr
 PWM API nicht nur die eine einzige *Diagnose-LED an GP7 (PWM Kanal 7)* steuern
@@ -166,9 +172,18 @@ kann. Die zusätzlich angeschlossene **externe LED** am Steckverbinder
 Wenden wir die Kommandos mit der Grundfrequenz von **fₚ = 50Hz** noch einmal an,
 nun aber auf den **PWM Kanal 5**.
 
-Beginnen wir mit 50% Helligkeit::
+-----------------------------------------------------------------------------
 
-   pwm usec pwm@40050000 5 20000 10000
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Beginnen wir mit 50% Helligkeit::
+
+      pwm usec pwm@40050000 5 20000 10000
 
 -----------------------------------------------------------------------------
 
@@ -177,23 +192,21 @@ Beginnen wir mit 50% Helligkeit::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   :rd:`failed to setup PWM (err -22)`
+   .. parsed-literal::
+      :class: code
 
-**Schade, die Behauptung stimmt** (noch) **nicht.**
+      :rd:`failed to setup PWM (err -22)`
 
-:brd:`Grund dafür ist der unzureichende Devicetree`, der aktuell für deine
+:brd:`Schade, die Behauptung stimmt` (noch) :brd:`nicht.`
+
+:ird:`Grund dafür ist der unzureichende Devicetree`, der aktuell für deine
 Zephyr Laufzeitumgebung beim Erstellen der *Zephyr UF2 Firmware* benutzt
 wurde. Die Tabelle weiter oben, mit der Übersicht der verfügbaren PWM Kanäle
 aus Sicht des MCU-Boards, führt kein Setup des PWM Kanals 5 auf.
-
-.. rst-class:: page-break
-
------------------------------------------------------------------------------
 
 .. ..... INFO ...............................................................
 
@@ -214,11 +227,13 @@ Die Technik hierbei ist das Konzept von
 komplexe Ausmaße annehmen. Wir behandeln es daher in späteren Übungen.
 Wir wollen in diesem Kapitel bei den Grundlagen bleiben.
 
+.. ..... INFO ...............................................................
+
 .. admonition:: Gut zu wissen
-   :class: info
+   :class: good-to-know info
 
    Du, als Firmware Entwickler, müsstest noch die jeweilige *"Verdrahtung"*
-   als **Hardwaredefinition in einem Devicetree Overlay** hinzufügen.
+   als **Hardwaredefinition** hinzufügen.
 
    Das bedeutet, aber nicht, dass du nun wie in herkömmlichen RTOS Projekten
    deinen oder schlimmstenfalls auch noch fremden Quellcode in irgendwelchen
@@ -226,7 +241,7 @@ Wir wollen in diesem Kapitel bei den Grundlagen bleiben.
    C-Code anfassen, ändern oder erweitern musst.
 
    **Du beschreibst deklarativ die tatsächlich vorliegende Hardware in der
-   Sprache des Devicetree (DTS).**
+   Sprache des Devicetree (DTS), als Devicetree Overlay.**
 
    Siehe auch: https://www.devicetree.org/
 
