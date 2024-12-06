@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -14,7 +15,7 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    :bgn:`uart:~$` _
 
 .. admonition:: Beachte bitte!
-   :class: red-border failure
+   :class: red-thick-border failure
    :collapsible: open
 
    **PWM kollidiert mit GPIO!**
@@ -52,6 +53,36 @@ angeschlossen ist.
 
 .. rst-class:: page-break
 
+Winkelpositionierung mit **Servomotor SG90**
+============================================
+
+Beginnen wir mit dem Servomotor an **PWM Kanal 12**.
+
+Der Servomotor **Tower Pro – SG90 Micro Servo 180°** stellt abhängig von der
+**Impulsdauer** eine feste **Winkelposition** ein. Folgende Beziehungen gelten
+zwischen Impulsdauer und Winkelposition (Zwischenwerte möglich).
+
+.. compound::
+
+   Die Grundfrequenz beträgt immer **fₚ = 50Hz**:
+
+   .. table::
+      :align: center
+
+      +-----------------+-------+--------+--------------------+-----------------+
+      | Bedeutung       | Winkelposition | Periode *T = 1/fₚ* | Impulsdauer *t* |
+      +=================+=======+========+====================+=================+
+      | Minimalposition |    0° |  -90°  |    20ms = 20000µs  | 0,50ms = 500µs  |
+      +-----------------+-------+--------+--------------------+-----------------+
+      | halb rechts     |   45° |  -45°  |    20ms = 20000µs  | 1,00ms = 1000µs |
+      +-----------------+-------+--------+--------------------+-----------------+
+      | Mittelposition  |   90° |    0°  |    20ms = 20000µs  | 1,50ms = 1500µs |
+      +-----------------+-------+--------+--------------------+-----------------+
+      | halb links      |  135° |  +45°  |    20ms = 20000µs  | 2,00ms = 2000µs |
+      +-----------------+-------+--------+--------------------+-----------------+
+      | Maximalposition |  180° |  +90°  |    20ms = 20000µs  | 2,50ms = 2500µs |
+      +-----------------+-------+--------+--------------------+-----------------+
+
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -59,41 +90,15 @@ angeschlossen ist.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Winkelpositionierung mit **Servomotor SG90**
+.. compound::
 
-Beginnen wir mit dem Servomotor an **PWM Kanal 12**.
+   Gib nacheinander ein und beobachte::
 
-Der Servomotor **Tower Pro – SG90 Micro Servo 180°** stellt abhängig von der
-**Impulsdauer** eine feste **Winkelposition** ein. Folgende Beziehungen gelten
-zwischen Impulsdauer und Winkelposition (Zwischenwerte möglich).
-Die Grundfrequenz beträgt immer **fₚ = 50Hz**:
-
-.. table::
-   :align: center
-
-   +-----------------+-------+--------+--------------------+-----------------+
-   | Bedeutung       | Winkelposition | Periode *T = 1/fₚ* | Impulsdauer *t* |
-   +=================+=======+========+====================+=================+
-   | Minimalposition |    0° |  -90°  |    20ms = 20000µs  | 0,50ms = 500µs  |
-   +-----------------+-------+--------+--------------------+-----------------+
-   | halb rechts     |   45° |  -45°  |    20ms = 20000µs  | 1,00ms = 1000µs |
-   +-----------------+-------+--------+--------------------+-----------------+
-   | Mittelposition  |   90° |    0°  |    20ms = 20000µs  | 1,50ms = 1500µs |
-   +-----------------+-------+--------+--------------------+-----------------+
-   | halb links      |  135° |  +45°  |    20ms = 20000µs  | 2,00ms = 2000µs |
-   +-----------------+-------+--------+--------------------+-----------------+
-   | Maximalposition |  180° |  +90°  |    20ms = 20000µs  | 2,50ms = 2500µs |
-   +-----------------+-------+--------+--------------------+-----------------+
-
-Gib nacheinander ein und beobachte::
-
-   pwm usec pwm@40050000 12 20000 2500
-   pwm usec pwm@40050000 12 20000 2000
-   pwm usec pwm@40050000 12 20000 1500
-   pwm usec pwm@40050000 12 20000 1000
-   pwm usec pwm@40050000 12 20000 500
-
-.. rst-class:: page-break
+      pwm usec pwm@40050000 12 20000 2500
+      pwm usec pwm@40050000 12 20000 2000
+      pwm usec pwm@40050000 12 20000 1500
+      pwm usec pwm@40050000 12 20000 1000
+      pwm usec pwm@40050000 12 20000 500
 
 -----------------------------------------------------------------------------
 
@@ -107,14 +112,10 @@ Winkelposition (Äquivalent ist die Impulsdauer) und bleibt dort stehen.
 
 **Spiele einfach mal mit Zwischenwerten für die Impulsdauer.**
 
------------------------------------------------------------------------------
+.. rst-class:: page-break
 
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-.. rubric:: Drehgeschwindigkeit mit **Servomotor FS90R**
+Drehgeschwindigkeit mit **Servomotor FS90R**
+============================================
 
 Fahren wir fort mit dem Servomotor an **PWM Kanal 15**.
 
@@ -122,38 +123,50 @@ Der Servomotor **Feetech – FS90R Micro Servo 360°** stellt abhängig von der
 **Impulsdauer** eine feste **Drehrichtung und Drehgeschwindigkeit** zwischen
 0…80 RPM ein. Folgende Beziehungen gelten zwischen Impulsdauer, Drehrichtung
 und Drehgeschwindigkeit (Zwischenwerte möglich).
-Die Grundfrequenz beträgt immer **fₚ = 50Hz**:
 
-.. table::
-   :align: center
+.. compound::
 
-   +-----------------------------------+-------------+-----+--------------------+-----------------+
-   | Bedeutung                         | Richtung    / RPM | Periode *T = 1/fₚ* | Impulsdauer *t* |
-   +===================================+=============+=====+====================+=================+
-   | :spelling:ignore:`Maximalgeschw.` | CW (rechts) | ≥80 |    20ms = 20000µs  | 0,50ms = 500µs  |
-   +-----------------------------------+             +-----+--------------------+-----------------+
-   | :spelling:ignore:`Mittelgeschw.`  |             | ≈40 |    20ms = 20000µs  | 1,35ms = 1350µs |
-   +-----------------------------------+-------------+-----+--------------------+-----------------+
-   | :spelling:ignore:`Minimalgeschw.` |             | ≈10 |    20ms = 20000µs  | 1,45ms = 1450µs |
-   +-----------------------------------+-------------+-----+--------------------+-----------------+
-   | Stopp, kraftlos                   |     (keine) |  0  |    20ms = 20000µs  | 1,50ms = 1500µs |
-   +-----------------------------------+-------------+-----+--------------------+-----------------+
-   | :spelling:ignore:`Minimalgeschw.` |             | ≈10 |    20ms = 20000µs  | 1,55ms = 1550µs |
-   +-----------------------------------+             +-----+--------------------+-----------------+
-   | :spelling:ignore:`Mittelgeschw.`  |             | ≈40 |    20ms = 20000µs  | 1,65ms = 1650µs |
-   +-----------------------------------+-------------+-----+--------------------+-----------------+
-   | :spelling:ignore:`Maximalgeschw.` | CCW (links) | ≥80 |    20ms = 20000µs  | 2,50ms = 2500µs |
-   +-----------------------------------+-------------+-----+--------------------+-----------------+
+   Die Grundfrequenz beträgt immer **fₚ = 50Hz**:
 
-Gib nacheinander ein und beobachte::
+   .. table::
+      :align: center
 
-   pwm usec pwm@40050000 15 20000 2500
-   pwm usec pwm@40050000 15 20000 1650
-   pwm usec pwm@40050000 15 20000 1550
-   pwm usec pwm@40050000 15 20000 1500
-   pwm usec pwm@40050000 15 20000 1450
-   pwm usec pwm@40050000 15 20000 1350
-   pwm usec pwm@40050000 15 20000 500
+      +-----------------------------------+-------------+-----+--------------------+-----------------+
+      | Bedeutung                         | Richtung    / RPM | Periode *T = 1/fₚ* | Impulsdauer *t* |
+      +===================================+=============+=====+====================+=================+
+      | :spelling:ignore:`Maximalgeschw.` | CW (rechts) | ≥80 |    20ms = 20000µs  | 0,50ms = 500µs  |
+      +-----------------------------------+             +-----+--------------------+-----------------+
+      | :spelling:ignore:`Mittelgeschw.`  |             | ≈40 |    20ms = 20000µs  | 1,35ms = 1350µs |
+      +-----------------------------------+-------------+-----+--------------------+-----------------+
+      | :spelling:ignore:`Minimalgeschw.` |             | ≈10 |    20ms = 20000µs  | 1,45ms = 1450µs |
+      +-----------------------------------+-------------+-----+--------------------+-----------------+
+      | Stopp, kraftlos                   |     (keine) |  0  |    20ms = 20000µs  | 1,50ms = 1500µs |
+      +-----------------------------------+-------------+-----+--------------------+-----------------+
+      | :spelling:ignore:`Minimalgeschw.` |             | ≈10 |    20ms = 20000µs  | 1,55ms = 1550µs |
+      +-----------------------------------+             +-----+--------------------+-----------------+
+      | :spelling:ignore:`Mittelgeschw.`  |             | ≈40 |    20ms = 20000µs  | 1,65ms = 1650µs |
+      +-----------------------------------+-------------+-----+--------------------+-----------------+
+      | :spelling:ignore:`Maximalgeschw.` | CCW (links) | ≥80 |    20ms = 20000µs  | 2,50ms = 2500µs |
+      +-----------------------------------+-------------+-----+--------------------+-----------------+
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Gib nacheinander ein und beobachte::
+
+      pwm usec pwm@40050000 15 20000 2500
+      pwm usec pwm@40050000 15 20000 1650
+      pwm usec pwm@40050000 15 20000 1550
+      pwm usec pwm@40050000 15 20000 1500
+      pwm usec pwm@40050000 15 20000 1450
+      pwm usec pwm@40050000 15 20000 1350
+      pwm usec pwm@40050000 15 20000 500
 
 -----------------------------------------------------------------------------
 
