@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -20,9 +21,11 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Schauen wir uns zunächst den Syntax des Kommando :bcy:`sensor` an. Gib ein::
+.. compound::
 
-   sensor -h
+   Schauen wir uns zunächst den Syntax des Kommando :bcy:`sensor` an. Gib ein::
+
+      sensor -h
 
 -----------------------------------------------------------------------------
 
@@ -31,34 +34,42 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`sensor` an. Gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   sensor - Sensor commands
-   Subcommands:
+   .. parsed-literal::
+      :class: code
 
-     get       : Get sensor data. Channel names are optional. All channels are
-                 read when no channels are provided. Syntax:
+      sensor - Sensor commands
+      Subcommands:
 
-                 <device_name> <channel name 0> .. <channel name N>
+        get       : Get sensor data. Channel names are optional. All channels are
+                    read when no channels are provided. Syntax:
 
-     attr_set  : Set the sensor's channel attribute.
+                    <device_name> <channel name 0> .. <channel name N>
 
-                 <device_name> <channel_name> <attribute_name> <value>
+        attr_set  : Set the sensor's channel attribute.
 
-     attr_get  : Get the sensor's channel attribute. Syntax:
+                    <device_name> <channel_name> <attribute_name> <value>
 
-                 <device_name> [<channel_name 0> <attribute_name 0> ..
-                                <channel_name N> <attribute_name N>]
+        attr_get  : Get the sensor's channel attribute. Syntax:
 
-     info      : Get all sensor info, such as vendor and model name.
+                    <device_name> [<channel_name 0> <attribute_name 0> ..
+                                   <channel_name N> <attribute_name N>]
 
-     trig      : Get or set the trigger type on a sensor.
-                 Currently only supports `data_ready`.
+        info      : Get all sensor info, such as vendor and model name.
 
-                 <device_name> <on/off> <trigger_name>
+        trig      : Get or set the trigger type on a sensor.
+                    Currently only supports `data_ready`.
+
+                    <device_name> <on/off> <trigger_name>
+
+.. rubric:: Bestandsaufnahme:
+
+Lass uns zu Beginn gemeinsam überprüfen, ob die aktuelle Zephyr UF2 Firmware
+überhaupt in der Lage ist, über die Zephyr Sensor API mit bekannten Sensoren
+arbeiten zu können.
 
 .. rst-class:: page-break
 
@@ -69,17 +80,30 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`sensor` an. Gib ein::
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Bestandsaufnahme
+.. compound::
 
-Lass uns zu Beginn gemeinsam überprüfen, ob die aktuelle Zephyr UF2 Firmware
-überhaupt in der Lage ist, über die Zephyr Sensor API mit bekannten Sensoren
-arbeiten zu können. Dafür hilft das Unterkommando :bcy:`sensor info`. Gib
-folgendes ein und beobachte::
+   Dafür hilft das Unterkommando :bcy:`sensor info`.
+   Gib folgendes ein und beobachte::
 
-   sensor info
+      sensor info
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
 
 **ES DARF NICHTS PASSIEREN** – deine aktuelle Zephyr UF2 Firmware, mit der
 Zephyr Shell, kennt nicht einen einzigen Sensor.
+
+Extra Devicetree Overlay für deinen BMP280
+==========================================
+
+Du musst jetzt ein spezielles :ref:`Devicetree Overlay <zephyr:use-dt-overlays>`
+schreiben. Dieses deklariert, dass an deinem I²C Bus der **Drucksensor BMP280**
+mit der 7-bit I²C Adresse ``0x77`` angeschlossen ist. Danach wird die Zephyr UF2
+Firmware neu gebaut.
 
 -----------------------------------------------------------------------------
 
@@ -88,29 +112,27 @@ Zephyr Shell, kennt nicht einen einzigen Sensor.
 .. image:: /_images/symbol-coder-server-bl.*
    :class: sidecar
 
-.. rubric:: Extra Devicetree Overlay für deinen BMP280
+.. compound::
 
-Du musst jetzt ein spezielles :ref:`Devicetree Overlay <zephyr:use-dt-overlays>`
-schreiben. Dieses deklariert, dass an deinem I²C Bus der **Drucksensor BMP280**
-mit der 7-bit I²C Adresse ``0x77`` angeschlossen ist. Danach wird die Zephyr UF2
-Firmware neu gebaut.
+   Hole deine **Online-Sitzung von VS Code** in den Vordergrund
+   und lege dir direkt in deinem West Workspace die neue Datei
+   :file:`grove_i2c-bmp280@77.overlay` an und fülle diese mit
+   folgendem Inhalt:
 
-Hole deine **Online-Sitzung von VS Code** in den Vordergrund und lege dir direkt
-in deinem West Workspace die neue Datei :file:`grove_i2c-bmp280@77.overlay` an
-und fülle diese mit folgendem Inhalt:
+   .. literalinclude:: /_assets/grove_i2c-bmp280@77.overlay
+      :language: DTS
+      :lines: 6,7,10-
 
-.. literalinclude:: /_assets/grove_i2c-bmp280@77.overlay
-   :language: DTS
-   :lines: 6,7,10-
+.. rubric:: Eine kurze Erläuterung dazu:
 
-**Eine kurze Erläuterung dazu:** Der I²C Bus wird dir als **Devicetree Node**
-:devicetree:`&grove_i2c` durch dein MCU-Board *Cytron – Maker Pi RP2040*
-zugänglich gemacht. Du erkennst schnell die Logik eines Devicetree. In genau
-diesen *"I²C Bus Block"* legst du nun einen **eigenen Devicetree Node**,
-den :devicetree:`bmp280: bmp280@77 { /* … /* };`. Damit gibt es einen neuen
-Knoten mit dem global ein-eindeutigen Namen ``bmp280@77`` und der zugehörigen
-Referenz :devicetree:`&bmp280`. Ein Knoten ist also nichts weiter als eine
-eigenständige Komponente *"im großen Baum deiner Hardware"*.
+Der I²C Bus wird dir als **Devicetree Node** :devicetree:`&grove_i2c` durch
+dein MCU-Board *Cytron – Maker Pi RP2040* zugänglich gemacht. Du erkennst
+schnell die Logik eines Devicetree. In genau diesen *"I²C Bus Block"* legst
+du nun einen **eigenen Devicetree Node**, den :devicetree:`bmp280: bmp280@77
+{ /* … /* };`. Damit gibt es einen neuen Knoten mit dem global ein-eindeutigen
+Namen ``bmp280@77`` und der zugehörigen Referenz :devicetree:`&bmp280`. Ein
+Knoten ist also nichts weiter als eine eigenständige Komponente *"im großen
+Baum deiner Hardware"*.
 
 Das **Pattern mit** ``@77`` **im Namen** und der **Devicetree Property**
 :devicetree:`reg = <0x77>;` ist eine **strikte und allgemeingültige Vorgabe**
@@ -135,6 +157,11 @@ einen Host-PC liefern wollen. Diese Eigenschaft ist in der Spezifikation
 *"Generic Sensor Property Usages of the HID Usage Tables"*\ [#]_
 (Abschnitt 22.5) definiert.
 
+Zephyr UF2 Firmware mit extra Devicetree Overlay bauen und laden
+================================================================
+
+Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
+
 -----------------------------------------------------------------------------
 
 .. ..... BUILD ..............................................................
@@ -142,15 +169,18 @@ einen Host-PC liefern wollen. Diese Eigenschaft ist in der Spezifikation
 .. image:: /_images/symbol-coder-server-bl.*
    :class: sidecar
 
-.. rubric:: Zephyr UF2 Firmware mit extra Devicetree Overlay bauen und laden
+.. compound::
 
-Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund und **baue
-die Zephyr UF2 Firmware** ``helloshell`` **nun aber mit deinem zusätzlichen
-Devicetree Overlay** :file:`grove_i2c-bmp280@77.overlay`, gib ein::
+   **Baue die Zephyr UF2 Firmware** ``helloshell`` **nun aber mit deinem
+   zusätzlichen Devicetree Overlay** :file:`grove_i2c-bmp280@77.overlay`,
+   gib ein:
 
-   west build -p -b cytron_maker_pi_rp2040        -S usb-console \
-              bridle/samples/helloshell                          \
-           -- -DEXTRA_DTC_OVERLAY_FILE=$(pwd)/grove_i2c-bmp280@77.overlay
+   .. parsed-literal::
+      :class: code
+
+      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+                 bridle/samples/helloshell                          \\
+              **-- -DEXTRA_DTC_OVERLAY_FILE=$(pwd)/grove_i2c-bmp280@77.overlay**
 
 -----------------------------------------------------------------------------
 
@@ -162,39 +192,10 @@ Devicetree Overlay** :file:`grove_i2c-bmp280@77.overlay`, gib ein::
 **Lade** dir die **Zephyr UF2 Firmware** herunter und lade diese anschließend
 **auf dein MCU-Board**.
 
------------------------------------------------------------------------------
+Neue Zephyr UF2 Firmware mit extra Devicetree Overlay benutzen
+==============================================================
 
-.. ..... RESULT .............................................................
-
-.. image:: /_images/symbol-observe-or.*
-   :class: sidecar
-
-.. rubric:: Neue Zephyr UF2 Firmware mit extra Devicetree Overlay benutzen
-
-Hole deinen **Terminalemulator** in den Vordergrund und **beobachte die
-Ausgaben**, folgendes muss zu sehen sein:
-
-.. parsed-literal::
-   :class: code
-
-   \*\*\*\*\* delaying boot 4000ms (per build configuration) \*\*\*\*\*
-   [00:00:00.189,000] :yl:`<wrn> udc_rpi: BUS RESET`
-   [00:00:00.269,000] :yl:`<wrn> udc_rpi: BUS RESET`
-   \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
-   Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
-   uart:~$ _
-
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-Wiederholen wir die Eingabe des Unterkommandos :bcy:`sensor info` von vorhin.
-Gib folgendes ein und beobachte::
-
-   sensor info
+Hole deinen **Terminalemulator** in den Vordergrund.
 
 -----------------------------------------------------------------------------
 
@@ -203,15 +204,29 @@ Gib folgendes ein und beobachte::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen (in einer einzigen Zeile pro Sensor):`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   **Beobachte die Ausgaben**, folgendes muss zu sehen sein:
 
-     device name: bmp280@77,
-          vendor: Bosch Sensortec GmbH,
-           model: bme280,
-   friendly name: air pressure
+   .. parsed-literal::
+      :class: code
+
+      \*\*\*\*\* delaying boot 4000ms (per build configuration) \*\*\*\*\*
+      [00:00:00.189,000] :yl:`<wrn> udc_rpi: BUS RESET`
+      [00:00:00.269,000] :yl:`<wrn> udc_rpi: BUS RESET`
+      \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
+      Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
+      uart:~$ _
+
+.. ..... INFO ...............................................................
+
+.. admonition:: Gut zu wissen
+   :class: good-to-know info
+
+   Erinnere dich an die ersten Übungen mit der Zephyr Shell und der integrierten
+   Hilfe. Du solltest jetzt extensiv die Tabulatortaste :kbd:`⇥` benutzen. Die
+   Zephyr Shell besitzt in deiner aktuell laufenden Firmware eine eingebaute
+   **Command-line completion** – wie nützlich, oder?
 
 .. rst-class:: page-break
 
@@ -222,14 +237,50 @@ Gib folgendes ein und beobachte::
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
+.. compound::
+
+   Wiederholen wir die Eingabe des Unterkommandos :bcy:`sensor info` von
+   vorhin. Gib folgendes ein und beobachte::
+
+      sensor info
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
+
+   :ign:`Folgendes wird erscheinen (in einer einzigen Zeile pro Sensor):`
+
+   .. parsed-literal::
+      :class: code
+
+        device name: bmp280@77,
+             vendor: Bosch Sensortec GmbH,
+              model: bme280,
+      friendly name: air pressure
+
 Los geht's, lesen wir unseren ersten Sensor-Wert über die Zephyr Sensor API aus.
 Beginnen wir damit, wofür der Sensor BMP280 gemacht ist. Wir lesen den Kanal mit
 dem **barometrischen Luftdruck** aus. Innerhalb der **Sensor API** ist das der
-**Kanal** mit der englischen Abkürzung **press**. Der notwendige Gerätename des
-Sensors hat uns die Info-Ausgabe zuvor geliefert, es ist ``bmp280@77``.
-Gib folgendes ein und beobachte::
+**Kanal** mit der englischen Abkürzung **press**.
 
-   sensor get bmp280@77 press
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Den notwendigen Gerätenamen des Sensors hat uns die Info-Ausgabe zuvor
+   geliefert, es ist ``bmp280@77``. Gib folgendes ein und beobachte::
+
+      sensor get bmp280@77 press
 
 -----------------------------------------------------------------------------
 
@@ -238,36 +289,34 @@ Gib folgendes ein und beobachte::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird (so ähnlich) erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird (so ähnlich) erscheinen:`
 
-   channel idx=14 press shift=7 num_samples=1 value=1059494800000ns (98.335596)
+   .. parsed-literal::
+      :class: code
 
------------------------------------------------------------------------------
-
-.. ..... RESULT .............................................................
-
-.. image:: /_images/symbol-observe-or.*
-   :class: sidecar
+      channel idx=14 press shift=7 num_samples=1 value=1059494800000ns (98.335596)
 
 Spiele nun einfach noch ein wenig mit dem Kommando :bcy:`sensor` herum. Versuche
 doch mal die **Umgebungstemperatur** (:spelling:ignore:`engl.` *ambient
-temperature*) oder gleich alle Kanäle zu lesen. Hier unser Ergebnis:
+temperature*) oder gleich alle Kanäle zu lesen.
 
-.. parsed-literal::
-   :class: code
+-----------------------------------------------------------------------------
 
-   channel idx=13 ambient_temp shift=5 num_samples=1 value=1872464000000ns (25.529999)
+.. ..... RESULT .............................................................
 
-.. admonition:: Gut zu wissen
-   :class: info
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
 
-   Erinnere dich an die ersten Übungen mit der Zephyr Shell und der integrierten
-   Hilfe. Du solltest jetzt extensiv die Tabulatortaste :kbd:`⇥` benutzen. Die
-   Zephyr Shell besitzt in deiner aktuell laufenden Firmware eine eingebaute
-   **Command-line completion** – wie nützlich, oder?
+.. compound::
+
+   Hier unser Ergebnis:
+
+   .. parsed-literal::
+      :class: code
+
+      channel idx=13 ambient_temp shift=5 num_samples=1 value=1872464000000ns (25.529999)
 
 .. include:: yourspace.rsti
 
