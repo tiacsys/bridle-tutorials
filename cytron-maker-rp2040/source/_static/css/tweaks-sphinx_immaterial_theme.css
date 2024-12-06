@@ -13,6 +13,11 @@
   display: inline-block;
 }
 
+.md-typeset img.sidecar {
+  float: inline-end;
+  margin: 0px 0px 10px 10px;
+}
+
 aside.sidebar {
   background-color: var(--docset_color-bg-yellow);
 }
