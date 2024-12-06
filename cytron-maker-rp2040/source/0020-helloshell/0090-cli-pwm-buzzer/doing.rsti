@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -14,7 +15,7 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    :bgn:`uart:~$` _
 
 .. admonition:: Beachte bitte!
-   :class: red-border failure
+   :class: red-thick-border failure
    :collapsible: open
 
    **PWM kollidiert mit GPIO!**
@@ -65,6 +66,48 @@ somit wird auch kein Ton erzeugt. Der Summer verstummt und ist aus.
    |                                 |         15kHz | 0,066666ms = 66µs   |   0,033333ms = 33µs   |
    +---------------------------------+---------------+---------------------+-----------------------+
 
+Frequenzen wohl bekannter Töne ausgeben
+=======================================
+
+Beginnen wir mit der Generierung wohl bekannter Töne laut obiger Tabelle.
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Gib nun nacheinander ein und beobachte (besser gesagt lausche)::
+
+      pwm usec pwm@40050000 6 2273 1136
+      pwm usec pwm@40050000 6 1000 500
+      pwm usec pwm@40050000 6 366 183
+      pwm usec pwm@40050000 6 100 50
+      pwm usec pwm@40050000 6 90 45
+      pwm usec pwm@40050000 6 83 41
+      pwm usec pwm@40050000 6 77 39
+      pwm usec pwm@40050000 6 71 36
+      pwm usec pwm@40050000 6 66 33
+      pwm usec pwm@40050000 6 1000 0
+
+Mehr kann man in dieser Übung nicht machen; es gibt ja nur den einen Summer.
+
+Euler und die Musik – Frequenzen der gleichstufigen Stimmung
+============================================================
+
+Aber halt, es gab doch noch die Tonleiter und ihre exakte mathematisch-logische
+Darstellung nach Euler\ [#]_.
+
+.. image:: /_images/doing/cmajor_scale.*
+   :align: center
+
+Ausgehend vom :brd:`Kammerton a'` (englisch :ird:`concert pitch A4`) werden
+Klaviernoten den folgenden Frequenzen der gleichstufigen Stimmung\ [#]_
+zugeordnet.
+
 .. rst-class:: page-break
 
 -----------------------------------------------------------------------------
@@ -74,82 +117,50 @@ somit wird auch kein Ton erzeugt. Der Summer verstummt und ist aus.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Frequenzen wohl bekannter Töne ausgeben
+.. compound::
 
-Gib nun nacheinander ein und beobachte (besser gesagt lausche)::
+   Die zugehörige Periode und Impulsdauer ist schnell ausgerechnet:
 
-   pwm usec pwm@40050000 6 2273 1136
-   pwm usec pwm@40050000 6 1000 500
-   pwm usec pwm@40050000 6 366 183
-   pwm usec pwm@40050000 6 100 50
-   pwm usec pwm@40050000 6 90 45
-   pwm usec pwm@40050000 6 83 41
-   pwm usec pwm@40050000 6 77 39
-   pwm usec pwm@40050000 6 71 36
-   pwm usec pwm@40050000 6 66 33
-   pwm usec pwm@40050000 6 1000 0
+   .. table::
+      :align: center
 
-Mehr kann man in dieser Übung nicht machen; es gibt ja nur den einen Summer.
-
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-.. rubric:: Euler und die Musik – Frequenzen der gleichstufigen Stimmung
-
-Aber halt, es gab doch noch die Tonleiter und ihre exakte mathematisch-logische
-Darstellung nach Euler\ [#]_.
-
-.. image:: /_images/doing/cmajor_scale.*
-   :align: center
-
-Ausgehend vom :brd:`Kammerton a'` (englisch :ird:`concert pitch A4`) werden
-Klaviernoten folgenden Frequenzen der gleichstufigen Stimmung\ [#]_ zugeordnet.
-Die zugehörige Periode und Impulsdauer ist schnell ausgerechnet:
-
-.. table::
-   :align: center
-
-   +-----------------------+-----------------------------+---------------------------------------+
-   |       Notation        |             *fₚ*            |                                       |
-   +-----------+-----------+--------------+--------------+         Shell Kommandozeile           |
-   | englisch  |  deutsch  |   *T = 1/fₚ* | *t = T/2*    |                                       |
-   +===========+===========+==============+==============+=======================================+
-   |    *C4*   |   **c'**  |           261,626Hz         | ``pwm usec pwm@40050000 6 3822 1911`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      3822µs  |      1911µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   |    *D4*   |   **d'**  |           293,665Hz         | ``pwm usec pwm@40050000 6 3405 1703`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      3405µs  |      1703µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   |    *E4*   |   **e'**  |           329,628Hz         | ``pwm usec pwm@40050000 6 3034 1517`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      3034µs  |      1517µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   |    *F4*   |   **f'**  |           349,228Hz         | ``pwm usec pwm@40050000 6 2864 1432`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      2864µs  |      1432µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   |    *G4*   |   **g'**  |           391,995Hz         | ``pwm usec pwm@40050000 6 2551 1276`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      2551µs  |      1276µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   | :ird:`A4` | :brd:`a'` |      :rd:`440,000Hz`        | ``pwm usec pwm@40050000 6 2273 1136`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           | :rd:`2273µs` | :rd:`1136µs` |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   |    *B4*   |   **h'**  |           493,883Hz         | ``pwm usec pwm@40050000 6 2025 1012`` |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      2025µs  |      1012µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
-   |    *C5*   |   **c''** |           523,251Hz         | ``pwm usec pwm@40050000 6 1911 956``  |
-   |           |           +--------------+--------------+                                       |
-   |           |           |      1911µs  |       956µs  |                                       |
-   +-----------+-----------+--------------+--------------+---------------------------------------+
+      +-----------------------+-----------------------------+---------------------------------------+
+      |       Notation        |             *fₚ*            |                                       |
+      +-----------+-----------+--------------+--------------+         Shell Kommandozeile           |
+      | englisch  |  deutsch  |   *T = 1/fₚ* | *t = T/2*    |                                       |
+      +===========+===========+==============+==============+=======================================+
+      |    *C4*   |   **c'**  |           261,626Hz         | ``pwm usec pwm@40050000 6 3822 1911`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      3822µs  |      1911µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      |    *D4*   |   **d'**  |           293,665Hz         | ``pwm usec pwm@40050000 6 3405 1703`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      3405µs  |      1703µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      |    *E4*   |   **e'**  |           329,628Hz         | ``pwm usec pwm@40050000 6 3034 1517`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      3034µs  |      1517µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      |    *F4*   |   **f'**  |           349,228Hz         | ``pwm usec pwm@40050000 6 2864 1432`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      2864µs  |      1432µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      |    *G4*   |   **g'**  |           391,995Hz         | ``pwm usec pwm@40050000 6 2551 1276`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      2551µs  |      1276µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      | :ird:`A4` | :brd:`a'` |      :rd:`440,000Hz`        | ``pwm usec pwm@40050000 6 2273 1136`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           | :rd:`2273µs` | :rd:`1136µs` |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      |    *B4*   |   **h'**  |           493,883Hz         | ``pwm usec pwm@40050000 6 2025 1012`` |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      2025µs  |      1012µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
+      |    *C5*   |   **c''** |           523,251Hz         | ``pwm usec pwm@40050000 6 1911 956``  |
+      |           |           +--------------+--------------+                                       |
+      |           |           |      1911µs  |       956µs  |                                       |
+      +-----------+-----------+--------------+--------------+---------------------------------------+
 
 .. include:: yourspace.rsti
 
