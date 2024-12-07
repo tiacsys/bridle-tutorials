@@ -7,6 +7,10 @@
 ;
 ; https://www.mos6581.org/rinohtype/master/stdtemplates.html#standard-templates
 ;
+; Defaults:
+;
+; https://github.com/brechtm/rinohtype/blob/master/src/rinoh/language/de.py
+;
 
 [TEMPLATE_CONFIGURATION]
 name = bridle
@@ -22,7 +26,15 @@ stylesheet = bridle.rts
 language = de
 
 [STRINGS]
-@contents = 'Inhalt'
+@chapter = 'Kapitel'
+@section = 'Abschnitt'
+@paragraph = 'Absatz'
+@index = 'Index'
+@figure = 'Abb.'
+@table = 'Tab.'
+@contents = 'Inhaltsverzeichnis'
+@list_of_figures = 'Abbildungsverzeichnis'
+@list_of_tables = 'Tabellenverzeichnis'
 @caution = 'Vorsichtig!'
 @warning = 'Warnungen bitte beachten'
 
