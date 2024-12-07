@@ -20,36 +20,40 @@ Shell-Kommando ``led``
    dieses ist eine direkte Abbildung auf die zugrundeliegende Zephyr API, siehe
    dazu auch :ref:`zephyr:led_api` in der Zephyr Dokumentation.
 
-.. rubric:: Wissenswertes
+.. admonition:: Wissenswertes
+   :class: worth-knowing note
+   :collapsible:
 
-Die :ref:`Zephyr LED API <zephyr:led_api>` unterstützt alle gegenwärtig am
-Markt bekannten elektrischen Eigenschaften von LEDs. Das sind: *brightness*,
-*colors* (für RGB-LEDs) und *channels* (für LED-Streifen). Alle diese
-Eigenschaften sind für jede einzelne im System vorhandene LED individuell
-erreichbar, vorausgesetzt, die LEDs wurden auch im jeweiligen Devicetree
-für Zephyr definiert. In dem von dir benutzten MCU-Board, dem *Cytron – Maker
-Pi RP2040*, wurde das für nur genau eine einzige LED getan – die **Dignose-LED
-an GP7**. Im Devicetree findet man folgende Definition dazu:
+   Die :ref:`Zephyr LED API <zephyr:led_api>` unterstützt so gut wie alle
+   üblichen elektrischen Eigenschaften von LEDs. Das sind: *brightness*,
+   *colors* (für RGB-LEDs) und *channels* (für LED-Streifen). Alle diese
+   Eigenschaften sind für jede einzelne im System vorhandene LED individuell
+   erreichbar, vorausgesetzt, die LEDs wurden auch im jeweiligen Devicetree
+   für Zephyr definiert.
 
-.. code-block:: DTS
+   In dem von dir benutzten MCU-Board, dem *Cytron – Maker Pi RP2040*, wurde
+   das für nur genau eine einzige LED getan – die **Diagnose-LED an GP7**.
+   Im Devicetree findet man folgende Definition dazu:
 
-   / {
-     pwm_leds: pwm_leds {
-       compatible = "pwm-leds";
-       status = "okay";
+   .. code-block:: DTS
 
-       pwm_led0: pwm_led_0 {
-         pwms = <&pwm 7 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
-         label = "PWM_LED";
-       };
-     };
-   };
+      / {
+        pwm_leds: pwm_leds {
+          compatible = "pwm-leds";
+          status = "okay";
 
-Demzufolge muss es in deiner Zephyr Laufzeitumgebung ein Gerät mit dem Namen
-``pwm_leds`` geben. Dieses Gerät verwaltet nur eine einzelne LED, adressierbar
-über den Index '0'. Mit Hilfe einer PWM und des zugehörigen Treibers kann dann
-über die LED API die Helligkeit verändert werden. PWMs lernst du in :ref:`einer
-der folgenden Übungen <hs-cli-pwm-led>` kennen.
+          pwm_led0: pwm_led_0 {
+            pwms = <&pwm 7 PWM_MSEC(20) PWM_POLARITY_NORMAL>;
+            label = "PWM_LED";
+          };
+        };
+      };
+
+   Demzufolge muss es in deiner Zephyr Laufzeitumgebung ein Gerät mit dem
+   Namen ``pwm_leds`` geben. Dieses Gerät verwaltet nur eine einzelne LED,
+   adressierbar über den Index '0'. Mit Hilfe einer PWM und des zugehörigen
+   Treibers kann dann über die LED API die Helligkeit verändert werden. PWMs
+   lernst du in :ref:`einer der folgenden Übungen <hs-cli-pwm-led>` kennen.
 
 .. include:: bom.rsti
 .. include:: assembly.rsti

@@ -20,6 +20,42 @@
 
       |nbsp|
 
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
+      |nbsp|
+
    *Warum gibt es nicht wie in der Übung zuvor einen symbolischen Namen für
    die LED? Im Devicetree steht doch:* :devicetree:`label = "PWM_LED";`
 
