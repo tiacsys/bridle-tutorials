@@ -18,6 +18,10 @@
   margin: 0px 0px 10px 10px;
 }
 
+.md-typeset div.centered {
+  text-align: center;
+}
+
 aside.sidebar {
   background-color: var(--docset_color-bg-yellow);
 }
