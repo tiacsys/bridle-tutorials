@@ -1,6 +1,6 @@
 .. admonition:: Zeit für deine Notizen, Fragen und Anregungen
-   :class: question
-   :collapsible:
+   :class: page-break question
+   :collapsible: open
 
    .. only:: rinoh
 
@@ -62,12 +62,9 @@
 
       |nbsp|
 
-      |nbsp|
-
-      |nbsp|
-
-      |nbsp|
-
-   *Uns ist noch keine Frage in den Sinn gekommen, dir vielleicht?*
+   *z.B.: Was sind das für "komische" Zeilen auf der Console, die mit einem
+   Zeitstempel in eckigen Klammern beginnen? Also das hier:*
+   "``[00:00:00.288,000] <wrn> udc_rpi: BUS RESET``" oder
+   "``[00:00:04.002,000] <inf> main: Displaying pattern on strip``"
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

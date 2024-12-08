@@ -1,26 +1,34 @@
-.. rubric:: Gesamtaufbau
+.. admonition:: Gesamtaufbau :rd:`(Rückbau)`
+   :class: note
+   :collapsible: open
 
-.. only:: rinoh
+   .. only:: rinoh
 
-   .. list-table::
+      .. list-table::
+         :align: center
+         :width: 100%
+
+         * - Siehe :numref:`gs-hw-setup-usb-console`. Aus Platzgründen befindet
+             sich die Abbildung auf der folgenden Seite.
+
+   Du siehst in der :numref:`gs-hw-setup-usb-console`, dass sich dein
+   Aufbau auf nur noch zwei Komponenten reduziert, das **MCU-Board**
+   und die notwendige **USB Verbindung zu deinem Host-PC**.
+
+   .. admonition:: Beachte bitte!
+      :class: red-thick-border failure
+      :collapsible: open
+
+      Aber, bitte: **lege nicht gleich Hand an!** Folge gewissenhaft der
+      Anleitung. Diese leitet dich durch kleine, logisch aufeinander
+      aufbauende Einzelschritte und beginnt nicht gleich mit dem Umbau.
+
+   .. figure:: /_images/assemblies/gs-hw-setup-usb-console.*
+      :name: gs-hw-setup-usb-console
+      :figclass: sideways
       :align: center
-      :width: 100%
+      :scale: 95%
 
-      * - Siehe :numref:`gs-hw-setup-usb-console`. Aus Platzgründen befindet
-          sich die Abbildung auf der folgenden Seite.
-
-Du siehst in der :numref:`gs-hw-setup-usb-console`, dass sich dein Aufbau auf
-nur noch zwei Komponenten reduziert, das **MCU-Board** und die notwendige **USB
-Verbindung zu deinem Host-PC**. Aber, bitte: **lege nicht gleich Hand an!**
-Folge gewissenhaft der Anleitung. Diese leitet dich durch kleine, logisch
-aufeinander aufbauende Einzelschritte und beginnt nicht gleich mit dem Umbau.
-
-.. figure:: /_images/assemblies/gs-hw-setup-usb-console.*
-   :name: gs-hw-setup-usb-console
-   :figclass: sideways
-   :align: center
-   :scale: 95%
-
-   *Cytron – Maker Pi RP2040* mit USB Console zum Host-PC
+      *Cytron – Maker Pi RP2040* mit USB Console zum Host-PC
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

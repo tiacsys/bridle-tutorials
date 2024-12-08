@@ -1,4 +1,5 @@
-.. rubric:: Durchführung (allgemein)
+Durchführung (allgemein)
+************************
 
 Vom **Vorgehensmodell** her betrachtet, versucht dich diese Anleitung durch
 Einzelschritte mit dem geringsten Risiko einer Fehlbedienung zu leiten. Das

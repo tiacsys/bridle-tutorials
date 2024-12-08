@@ -1,37 +1,39 @@
-.. rubric:: Ausrüstung
+.. admonition:: Ausrüstung :rd:`(Rückbau)`
+   :class: page-break note
+   :collapsible: open
 
-.. list-table::
-   :class: longtable
-   :align: center
-   :width: 100%
-   :widths: 20, 80
-   :header-rows: 1
+   .. list-table::
+      :class: longtable
+      :align: center
+      :width: 100%
+      :widths: 20, 80
+      :header-rows: 1
 
-   * - Material
-     -
+      * - Material
+        -
 
-   * - .. image:: /_images/boms/red4power-r4-u007b-with-cable.*
-          :align: center
-     - **1x** USB-Hub mit Kabeln
+      * - .. image:: /_images/boms/red4power-r4-u007b-with-cable.*
+             :align: center
+        - **1x** USB-Hub mit Kabeln
 
-       *4-fach USB 2.0 Mini-Hub* für die Verbindung von deinem *Host-PC* zum
-       *MCU-Board* (grünes USB-Kabel) und den *Raspberry Pi – Debug Probe*
-       (orangenes USB-Kabel).
+          *4-fach USB 2.0 Mini-Hub* für die Verbindung von deinem *Host-PC* zum
+          *MCU-Board* (grünes USB-Kabel) und den *Raspberry Pi – Debug Probe*
+          (orangenes USB-Kabel).
 
-       .. tip::
+          .. tip::
 
-          **Den USB-Hub wirst du auch weiterhin benötigen! Belasse ihn
-          für alle anderen Übungen in deinem Aufbau.**
+             **Den USB-Hub wirst du auch weiterhin benötigen! Belasse ihn
+             für alle anderen Übungen in deinem Aufbau.**
 
-   * - .. image:: /_images/boms/cytron-maker-pi-rp2040.*
-          :align: center
-     - **1x** MCU-Board
+      * - .. image:: /_images/boms/cytron-maker-pi-rp2040.*
+             :align: center
+        - **1x** MCU-Board
 
-       *Cytron – Maker Pi RP2040* als Zielsystem für alle Übungen.
+          *Cytron – Maker Pi RP2040* als Zielsystem für alle Übungen.
 
-       .. tip::
+          .. tip::
 
-          **Das MCU-Board wirst du auch weiterhin benötigen! Belasse es
-          für alle anderen Übungen in deinem Aufbau.**
+             **Das MCU-Board wirst du auch weiterhin benötigen! Belasse es
+             für alle anderen Übungen in deinem Aufbau.**
 
 .. vi: ft=rst ai ts=3 et sw=3 sta
