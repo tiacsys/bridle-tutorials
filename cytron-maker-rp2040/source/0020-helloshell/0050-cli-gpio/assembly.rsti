@@ -1,15 +1,17 @@
-.. rubric:: Gesamtaufbau
+.. admonition:: Gesamtaufbau (unverändert, wie zuvor)
+   :class: note
+   :collapsible:
 
-.. list-table::
-   :align: center
-   :width: 100%
-   :widths: 90, 10
+   .. list-table::
+      :align: center
+      :width: 100%
+      :widths: 70, 30
 
-   * - Du arbeitest an der bereits aufgebauten und unveränderten Hardware aus
-       der :ref:`Übung zuvor <hs-cli-device>` weiter.
-       Belasse alles so, wie es ist; ziehe nichts ab oder stecke etwas dazu.
-       Es funktioniert ja gerade so gut.
-     - .. image:: /_images/assemblies/hs-hw-setup-zephyr-shell.*
-          :align: center
+      * - Du arbeitest an der bereits aufgebauten und unveränderten Hardware aus
+          der :ref:`Übung zuvor <hs-cli-device>` weiter.
+          Belasse alles so, wie es ist; ziehe nichts ab oder stecke etwas dazu.
+          Es funktioniert ja gerade so gut.
+        - .. image:: /_images/assemblies/hs-hw-setup-zephyr-shell.*
+             :align: center
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

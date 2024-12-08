@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -13,8 +14,6 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
    :bgn:`uart:~$` _
 
-.. rst-class:: page-break
-
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -22,9 +21,11 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Schauen wir uns zunächst den Syntax des Kommando :bcy:`gpio` an. Gib ein::
+.. compound::
 
-   gpio -h
+   Schauen wir uns zunächst den Syntax des Kommando :bcy:`gpio` an. Gib ein::
+
+      gpio -h
 
 -----------------------------------------------------------------------------
 
@@ -33,64 +34,57 @@ Schauen wir uns zunächst den Syntax des Kommando :bcy:`gpio` an. Gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   gpio - GPIO commands
-   Subcommands:
+   .. parsed-literal::
+      :class: code
 
-     conf   : Configure GPIO pin
+      gpio - GPIO commands
+      Subcommands:
+        conf   : Configure GPIO pin
 
-              Usage: gpio conf <device> <pin>
-                               <configuration <i|o>[u|d][h|l][0|1]>
-                               [vendor specific]
-
-              <i|o> - input | output
-
-              [u|d] - pull up | pull down, otherwise open
-
-              [h|l] - active high | active low,
-                      otherwise defaults to active high
-
-              [0|1] - initialise to logic 0 | logic 1,
-                      otherwise defaults to logic 0
-
-              [vendor specific] - configuration flags within the mask 0xFF00
-                                  see include/zephyr/dt-bindings/gpio/
-
-     get    : Get GPIO pin value
-
-              Usage: gpio get <device> <pin>
-
-     set    : Set GPIO pin value
-
-              Usage: gpio set <device> <pin> <level 0|1>
-
-     blink  : Blink GPIO pin
-
-              Usage: gpio blink <device> <pin>
-
-     info   : GPIO Information
-
-              Usage: gpio info [device]
+                 Usage: gpio conf <device> <pin>
+                                  <configuration <i|o>[u|d][h|l][0|1]>
+                                  [vendor specific]
+                 <i|o> - input | output
+                 [u|d] - pull up | pull down, otherwise open
+                 [h|l] - active high | active low,
+                         otherwise defaults to active high
+                 [0|1] - initialise to logic 0 | logic 1,
+                         otherwise defaults to logic 0
+                 [vendor specific] - configuration flags within the mask 0xFF00
+                                     see include/zephyr/dt-bindings/gpio/
+        get    : Get GPIO pin value
+                 Usage: gpio get <device> <pin>
+        set    : Set GPIO pin value
+                 Usage: gpio set <device> <pin> <level 0|1>
+        blink  : Blink GPIO pin
+                 Usage: gpio blink <device> <pin>
+        info   : GPIO Information
+                 Usage: gpio info [device]
 
 .. rst-class:: page-break
 
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-.. rubric:: Information über GPIO Leitungen
+Information über GPIO Leitungen
+===============================
 
 Beginnen wir mit einer Übersicht aller in deiner Zephyr Laufzeitumgebung
-verfügbaren GPIO Leitungen, gib ein::
+verfügbaren GPIO Leitungen.
 
-   gpio info
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Gib ein::
+
+      gpio info
 
 -----------------------------------------------------------------------------
 
@@ -99,61 +93,62 @@ verfügbaren GPIO Leitungen, gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-     Line         Reserved Device           Pin
-                   \*        gpio@40014000    19
-                   \*        gpio@40014000    23
-                   \*        gpio@40014000    24
-                   \*        gpio@40014000    25
-      BUZZER_PWM6           gpio@40014000    22
-      DCM1A_PWM8            gpio@40014000     8
-      DCM1B_PWM9            gpio@40014000     9
-      DCM2A_PWM10           gpio@40014000    10
-      DCM2B_PWM11           gpio@40014000    11
-      GROVE13_TX0           gpio@40014000     0
-      GROVE14_RX0           gpio@40014000     1
-      GROVE23_SCK0          gpio@40014000     2
-      GROVE24_SDO0          gpio@40014000     3
-      GROVE33_SDI0          gpio@40014000     4
-      GROVE34_CSN0          gpio@40014000     5
-      GROVE43_SDA0          gpio@40014000    16
-      GROVE44_SCL0          gpio@40014000    17
-      GROVE53               gpio@40014000     6
-      GROVE54_ADC0          gpio@40014000    26
-      GROVE64_ADC1          gpio@40014000    27
-      GROVE73ULED0          gpio@40014000     7
-      GROVE74_ADC2          gpio@40014000    28
-      RGB_PIO0              gpio@40014000    18
-      SRVM1_PWM12           gpio@40014000    12
-      SRVM2_PWM13           gpio@40014000    13
-      SRVM3_PWM14           gpio@40014000    14
-      SRVM4_PWM15           gpio@40014000    15
-      UBTN0                 gpio@40014000    20
-      UBTN1                 gpio@40014000    21
-      VMOTOR_ADC3           gpio@40014000    29
+   .. parsed-literal::
+      :class: code
 
-Sortiert nach spezifischen **Leitungsnamen** (*Line*), welche alle samt aus
-dem zugehörigen Devicetree des MCU-Boards stammen, zeigt diese Liste die
-tatsächlichen **Leitungsnummern** (*Pin*) an der zuständigen **GPIO HW-Instanz**
-(*Device*) an. Hier taucht nun das erste mal wieder ein spezieller Gerätename
-auf, den wir bereits in der Liste aller Geräte aus der
-:ref:`Übung zuvor <hs-cli-device>` gesehen haben. Das Kommando :bcy:`gpio` wird
-bei all seinen Unterkommandos immer einen Gerätenamen erwarten.
+        Line         Reserved Device           Pin
+                      \*        gpio@40014000    19
+                      \*        gpio@40014000    23
+                      \*        gpio@40014000    24
+                      \*        gpio@40014000    25
+         BUZZER_PWM6           gpio@40014000    22
+         DCM1A_PWM8            gpio@40014000     8
+         DCM1B_PWM9            gpio@40014000     9
+         DCM2A_PWM10           gpio@40014000    10
+         DCM2B_PWM11           gpio@40014000    11
+         GROVE13_TX0           gpio@40014000     0
+         GROVE14_RX0           gpio@40014000     1
+         GROVE23_SCK0          gpio@40014000     2
+         GROVE24_SDO0          gpio@40014000     3
+         GROVE33_SDI0          gpio@40014000     4
+         GROVE34_CSN0          gpio@40014000     5
+         GROVE43_SDA0          gpio@40014000    16
+         GROVE44_SCL0          gpio@40014000    17
+         GROVE53               gpio@40014000     6
+         GROVE54_ADC0          gpio@40014000    26
+         GROVE64_ADC1          gpio@40014000    27
+         GROVE73ULED0          gpio@40014000     7
+         GROVE74_ADC2          gpio@40014000    28
+         RGB_PIO0              gpio@40014000    18
+         SRVM1_PWM12           gpio@40014000    12
+         SRVM2_PWM13           gpio@40014000    13
+         SRVM3_PWM14           gpio@40014000    14
+         SRVM4_PWM15           gpio@40014000    15
+         UBTN0                 gpio@40014000    20
+         UBTN1                 gpio@40014000    21
+         VMOTOR_ADC3           gpio@40014000    29
 
-.. rst-class:: page-break
+Sortiert nach spezifischen **Leitungsnamen** (*Line*), welche alle samt
+aus dem zugehörigen Devicetree des MCU-Boards stammen, zeigt diese Liste
+die tatsächlichen **Leitungsnummern** (*Pin*) an der zuständigen
+**GPIO HW-Instanz** (*Device*) an. Hier taucht nun das erste mal wieder
+ein spezieller Gerätename auf, den wir bereits in der Liste aller Geräte
+aus der :ref:`Übung zuvor <hs-cli-device>` gesehen haben. Das Kommando
+:bcy:`gpio` wird bei all seinen Unterkommandos immer einen Gerätenamen
+erwarten.
 
-Wie die Liste es zeigt, wird das in unserem Fall hier immer der selbe Gerätename
-sein, ``gpio@40014000``. Es gibt keine weitere HW-Instanz. Das ist auf
-komplexeren Systemen anders. Hier können auch gerne an die 10 HW-Instanzen
-auftauchen, entweder weitere direkt im Mikrocontroller selbst oder über einen
-I²C Bus angeschlossene *GPIO Port Expander*.
+Wie die Liste es zeigt, wird das in unserem Fall hier immer der selbe
+Gerätename sein, ``gpio@40014000``. Es gibt keine weitere HW-Instanz.
+Das ist auf komplexeren Systemen anders. Hier können auch gerne an die
+10 HW-Instanzen auftauchen, entweder weitere direkt im Mikrocontroller
+selbst oder über einen I²C Bus angeschlossene *GPIO Port Expander*.
 
 .. admonition:: Gut zu wissen
-   :class: info
+   :class: good-to-know info
 
    Allgemein ist es **nicht üblich**, dass im Devicetree die nutzbaren
    **GPIO Leitungen benannt** und unzugängliche als *Reserved* markiert
@@ -169,7 +164,12 @@ kann ihn also in den folgenden Kommandos als Ersatz für eine konkrete
 **Ein Beispiel:** die Schreibweise ``gpio@40014000 GROVE53`` entspricht exakt
 der in aller Regel am häufigsten anzutreffenden ``gpio@40014000 6``.
 
-.. rst-class:: page-break
+Information über ein GPIO Gerät
+===============================
+
+Nun kann man also mit dem konkreten Gerätenamen ``gpio@40014000`` auch eine
+Übersicht der durch diese benannte HW-Instanz verfügbaren GPIO Leitungen
+anzeigen lassen.
 
 -----------------------------------------------------------------------------
 
@@ -178,13 +178,11 @@ der in aller Regel am häufigsten anzutreffenden ``gpio@40014000 6``.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: Information über ein GPIO Gerät
+.. compound::
 
-Nun kann man also mit dem konkreten Gerätenamen ``gpio@40014000`` auch eine
-Übersicht der durch diese benannte HW-Instanz verfügbaren GPIO Leitungen
-anzeigen lassen, gib ein::
+   Gib ein::
 
-   gpio info gpio@40014000
+      gpio info gpio@40014000
 
 -----------------------------------------------------------------------------
 
@@ -193,44 +191,46 @@ anzeigen lassen, gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-    ngpios: 30
-    Reserved pin mask: 0xC3880000
-    Reserved  Pin  Line Name
-               0    GROVE13_TX0
-               1    GROVE14_RX0
-               2    GROVE23_SCK0
-               3    GROVE24_SDO0
-               4    GROVE33_SDI0
-               5    GROVE34_CSN0
-               6    GROVE53
-               7    GROVE73ULED0
-               8    DCM1A_PWM8
-               9    DCM1B_PWM9
-              10    DCM2A_PWM10
-              11    DCM2B_PWM11
-              12    SRVM1_PWM12
-              13    SRVM2_PWM13
-              14    SRVM3_PWM14
-              15    SRVM4_PWM15
-              16    GROVE43_SDA0
-              17    GROVE44_SCL0
-              18    RGB_PIO0
-        \*     19
-              20    UBTN0
-              21    UBTN1
-              22    BUZZER_PWM6
-        \*     23
-        \*     24
-        \*     25
-              26    GROVE54_ADC0
-              27    GROVE64_ADC1
-              28    GROVE74_ADC2
-              29    VMOTOR_ADC3
+   .. parsed-literal::
+      :class: code
+
+       ngpios: 30
+       Reserved pin mask: 0xC3880000
+       Reserved  Pin  Line Name
+                  0    GROVE13_TX0
+                  1    GROVE14_RX0
+                  2    GROVE23_SCK0
+                  3    GROVE24_SDO0
+                  4    GROVE33_SDI0
+                  5    GROVE34_CSN0
+                  6    GROVE53
+                  7    GROVE73ULED0
+                  8    DCM1A_PWM8
+                  9    DCM1B_PWM9
+                 10    DCM2A_PWM10
+                 11    DCM2B_PWM11
+                 12    SRVM1_PWM12
+                 13    SRVM2_PWM13
+                 14    SRVM3_PWM14
+                 15    SRVM4_PWM15
+                 16    GROVE43_SDA0
+                 17    GROVE44_SCL0
+                 18    RGB_PIO0
+           \*     19
+                 20    UBTN0
+                 21    UBTN1
+                 22    BUZZER_PWM6
+           \*     23
+           \*     24
+           \*     25
+                 26    GROVE54_ADC0
+                 27    GROVE64_ADC1
+                 28    GROVE74_ADC2
+                 29    VMOTOR_ADC3
 
 Die Anzahl ist natürlich sie selbe, nur die Sortierung erfolgt nun nach
 tatsächlichen **Leitungsnummern** (*Pin*). Der symbolische Leitungsname,
@@ -240,7 +240,25 @@ So weit so gut, wollen wir nun im Folgenden den Umgang mit einem Aus- und
 einem Eingang untersuchen. Wir beginnen mit einer LED (Ausgabe) und gehen
 dann weiter mit einer Taste (Eingang).
 
-.. rst-class:: page-break
+Zusätzlich angeschlossene LED
+=============================
+
+Die *zusätzlich angeschlossene LED*, das Modul **Seeed Studio – Grove - LED**,
+ist mit dem Stecker **GROVE 3** verbunden. Die darauf befindliche LED ist an
+diesem Stecker an **Pin 4** angeschlossen. Dieses ist auf dem MCU-Board mit
+**GP5** (ein Name aus der Dokumentation des Mikrocontrollers) gekennzeichnet
+und wird auch als *Chip Select* Leitung des ``SPI0`` Bus genutzt. Daher der
+freundlichere Leitungsname ``GROVE34_CSN0``.
+
+Beachte, dass die eben genannte Pin-Nummer 4 der Pin am genannten Steckverbinder
+*GROVE 3* auf deinem MCU-Board ist. Das ist nicht die Pin-Nummer an der GPIO
+HW-Instanz. Der symbolische Leitungsname ``GROVE34_CSN0`` zeigt auf
+``gpio@40014000 5``, also Pin-Nummer 5 an der GPIO HW-Instanz. Vielleicht
+erkennt man jetzt auch schon die Korrelation. Wenn immer auf deinem MCU-Board
+die Kennzeichnung *GP* mit einer Zahl auftaucht, dann ist die Zahl entsprechend
+die Pin-Nummer an der GPIO HW-Instanz des Mikrocontrollers, ein Beispiel: *GP26*
+ist Pin 26, wird also durch ``gpio@40014000 26`` beschrieben, oder auch in
+unserem Fall mit dem symbolischen Leitungsnamen ``gpio@40014000 GROVE54_ADC0``.
 
 -----------------------------------------------------------------------------
 
@@ -249,35 +267,18 @@ dann weiter mit einer Taste (Eingang).
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: zusätzlich angeschlossene LED
+.. compound::
 
-Die *zusätzlich angeschlossene LED*, das Modul **Seeed Studio – Grove - LED**,
-ist mit dem Stecker **GROVE 3** verbunden. Die darauf befindliche LED ist an
-diesem Stecker an **Pin 4** angeschlossen. Das ist auf dem MCU-Board mit **GP5**
-(ein Name aus der Dokumentation des Mikrocontrollers) gekennzeichnet und wird
-auch als *Chip Select* Leitung des ``SPI0`` Bus genutzt. Daher der freundlichere
-Leitungsname ``GROVE34_CSN0``.
+   Gib nacheinander ein und beobachte. Variiere die Zeilen auch gerne, z.B. die
+   tatsächliche Pin-Nummer benutzen oder eine der auf dem MCU-Board verbauten
+   Diagnose-LEDs benutzen (die entsprechende GP- also Pin-Nummer steht auf dem
+   MCU-Board aufgedruckt, z.B. **GP7** als ``GROVE73ULED0``)::
 
-Beachte, dass die eben genannte Pin-Nummer 4 der Pin am genannten Steckverbinder
-*GROVE 3* auf deinem MCU-Board ist. Das ist nicht die Pin-Nummer an der GPIO
-HW-Instanz. Der symbolische Leitungsname ``GROVE34_CSN0`` zeigt auf
-``gpio@40014000 5``, also Pin-Nummer 5 an der GPIO HW-Instanz. Vielleicht
-erkennt man jetzt auch schon die Korrelation. Wenn immer auf deinem MCU-Board
-die Kennzeichnung *GP* mit einer Zahl auftaucht, dann ist die Zahl entsprechend
-die Pin-Nummer an der GPIO HW-Instanz, ein Beispiel: *GP26* ist Pin 26, wird
-also durch ``gpio@40014000 26`` beschrieben, oder auch in unserem Fall mit dem
-symbolischen Leitungsnamen ``gpio@40014000 GROVE54_ADC0``.
-
-Gib nacheinander ein und beobachte. Variiere die Zeilen auch gerne, z.B. die
-tatsächliche Pin-Nummer benutzen oder eine der auf dem MCU-Board verbauten
-Diagnose-LEDs benutzen (die entsprechende GP- also Pin-Nummer steht auf dem
-MCU-Board aufgedruckt, z.B. **GP7** als ``GROVE73ULED0``)::
-
-   gpio get gpio@40014000 GROVE34_CSN0
-   gpio conf gpio@40014000 GROVE34_CSN0 oh
-   gpio set gpio@40014000 GROVE34_CSN0 1
-   gpio set gpio@40014000 GROVE34_CSN0 0
-   gpio blink gpio@40014000 GROVE34_CSN0
+      gpio get gpio@40014000 GROVE34_CSN0
+      gpio conf gpio@40014000 GROVE34_CSN0 oh
+      gpio set gpio@40014000 GROVE34_CSN0 1
+      gpio set gpio@40014000 GROVE34_CSN0 0
+      gpio blink gpio@40014000 GROVE34_CSN0
 
 Beachte nun hier die Zeile mit dem Unterkommando :bcy:`gpio conf`. Als letzter
 Parameter wird hier ``oh`` angegeben. Das ist wichtig, ist das doch die
@@ -289,7 +290,14 @@ dazu anzeigen lassen, mit :bcy:`gpio conf -h`
 Die betreffende LED wird also mit dem Unterkommando :bcy:`gpio set … 1` ein-
 und mit :bcy:`gpio set … 0` wieder ausgeschaltet.
 
-.. rst-class:: page-break
+Zusätzlich angeschlossene Taste
+===============================
+
+Die *zusätzlich angeschlossene Taste*, das Modul **Seeed Studio – Grove -
+Button**, ist mit dem Stecker **GROVE 2** verbunden. Die darauf befindliche
+Taste ist an diesem Stecker an **Pin 4** angeschlossen. Dieses Pin ist auf dem
+MCU-Board mit **GP3** gekennzeichnet und wird auch als *Serial Data Out*
+Leitung des ``SPI0`` Bus genutzt. Daher der freundlichere Name ``GROVE24_SDO0``.
 
 -----------------------------------------------------------------------------
 
@@ -298,93 +306,96 @@ und mit :bcy:`gpio set … 0` wieder ausgeschaltet.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-.. rubric:: zusätzlich angeschlossene Taste
+.. compound::
 
-Die *zusätzlich angeschlossene Taste*, das Modul **Seeed Studio – Grove -
-Button**, ist mit dem Stecker **GROVE 2** verbunden. Die darauf befindliche
-Taste ist an diesem Stecker an **Pin 4** angeschlossen. Das ist auf dem
-MCU-Board mit **GP3** und wird auch als *Serial Data Out* Leitung des ``SPI0``
-Bus genutzt. Daher der freundlichere Name ``GROVE24_SDO0``.
+   Gib nacheinander ein und beobachte. Variiere die Zeilen auch gerne, z.B. die
+   tatsächliche Pin-Nummer benutzen oder eine der auf dem MCU-Board verbauten
+   User-Tasten benutzen (die entsprechende GP- also Pin-Nummer steht auf dem
+   MCU-Board aufgedruckt, z.B. **GP21** als ``UBTN1``)::
 
-Gib nacheinander ein und beobachte. Variiere die Zeilen auch gerne, z.B. die
-tatsächliche Pin-Nummer benutzen oder eine der auf dem MCU-Board verbauten
-User-Tasten benutzen (die entsprechende GP- also Pin-Nummer steht auf dem
-MCU-Board aufgedruckt, z.B. **GP21** als ``UBTN1``)::
-
-   gpio get gpio@40014000 GROVE24_SDO0
-   gpio conf gpio@40014000 GROVE24_SDO0 il
-   gpio get gpio@40014000 GROVE24_SDO0
-   gpio get gpio@40014000 GROVE24_SDO0
+      gpio get gpio@40014000 GROVE24_SDO0
+      gpio conf gpio@40014000 GROVE24_SDO0 il
+      gpio get gpio@40014000 GROVE24_SDO0
+      gpio get gpio@40014000 GROVE24_SDO0
 
 Hier ist nun in der Zeile mit dem Unterkommando :bcy:`gpio conf` als letzter
 Parameter ``il`` angegeben. Die Bedeutung wirst du schon erahnen, ein Eingang
 (:bcy:`i` – *input*) mit aktivem Low-Pegel für den logischen Wert '1'
-(:bcy:`l` – *low active*). Die Taste wird also beim Drücken eine Verbindung
-zur Masse (Minus) – oder im Englischen *Ground* (GND) – realisieren. Die
-Software soll dieses allgemein mit *asserting* bezeichnete Verhalten als
-logischen Wert '1' interpretieren, daher eine explizite Negation.
+(:bcy:`l` – *low active*).
+
+Die Taste wird also beim Drücken eine Verbindung zur Masse (Minus) – oder im
+Englischen *Ground* (GND) – schließen müssen. Die GPIO API wird diesen allgemein
+mit *asserting* bezeichneten Low-Pegel als logischen Wert '1' interpretieren.
+Das ist somit eine explizite Negation.
 
 |nbsp|
 
-**Kontrolliere diese Behauptung** mit den Ergebnissen der beiden Zeilen mit
-dem Unterkommando :bcy:`gpio get`, wenn du jeweils die Taste gedrückt oder
-nicht gedrückt hast. **Vergleiche eventuelle Effekte auch mit der Taste auf
-deinem MCU-Board an der Leitung GP21** (``UBTN1``)\ **.**
+**Kontrolliere diese Behauptung** über das *asserting* mit den Ergebnissen
+aus den beiden Zeilen mit dem Unterkommando :bcy:`gpio get`, wenn du jeweils
+die Taste gedrückt oder nicht gedrückt hast.
+
+**Vergleiche eventuelle Effekte auch mit der Taste auf deinem MCU-Board an
+der Leitung GP21** (``UBTN1``)\ **.**
 
 |nbsp|
 
 **Erkennst du einen Unterschied? Stimmt die Behauptung? Wenn nicht, warum?
 Woran könnte das liegen?**
 
+.. ..... INFO ...............................................................
+
 .. rst-class:: page-break
 
------------------------------------------------------------------------------
-
-.. ..... INFO ...............................................................
+|nbsp|
 
 .. rubric:: Erklärung des Unterschieds
 
-Grundsätzlich sind die Taste auf deinem MCU-Board an der Leitung **GP21**
+Grundsätzlich ist die Taste auf deinem MCU-Board an der Leitung **GP21**
 (``UBTN1``) und die zusätzlich angeschlossene Taste an der Leitung
 **GP3** (``GROVE24_SDO0``) unterschiedlich verschaltet.
 
-.. list-table::
-   :align: center
-   :width: 100%
-   :widths: 50, 50
-   :header-rows: 1
+.. admonition:: Gut zu wissen
+   :class: good-to-know info
 
-   * - Cytron – Maker Pi RP2040 (**GP21**)
-     - Seeed Studio – Grove - Button (**GP3**)
+   .. list-table::
+      :align: center
+      :width: 100%
+      :widths: 50, 50
+      :header-rows: 1
 
-   * - Auf dem MCU-Board wird die Taste an **GP21** beim Drücken nach Masse (GND)
-       geschaltet. Der aktive Pegel für das *asserting* des logischen Werts '1'
-       auf Ebene der Applikationssoftware ist somit als **Low-Active** definiert
-       und eine **Negation ist notwendig** (:bcy:`il`).
+      * - Cytron – Maker Pi RP2040 (**GP21**)
+        - Seeed Studio – Grove - Button (**GP3**)
 
-       Die GPIO Konfiguration muss hier richtig lauten:
+      * - Auf dem MCU-Board wird die Taste an **GP21** beim Drücken nach
+          Masse (GND) geschaltet. Der aktive Pegel für das *asserting* des
+          logischen Werts '1' auf Ebene der Applikationssoftware ist somit
+          als **Low-Active** definiert und eine **Negation ist notwendig**
+          (:bcy:`il`).
 
-       .. parsed-literal::
-          :class: code
+          Die GPIO Konfiguration muss hier richtig lauten:
 
-          gpio conf gpio@40014000 21 :bcy:`il`
+          .. parsed-literal::
+             :class: code
 
-     - Die zusätzlich angeschlossene Taste an **GP3** wird beim Drücken nach
-       Plus (VCC) geschaltet. Der aktive Pegel für das *asserting* des logischen
-       Werts '1' auf Ebene der Applikationssoftware ist somit als **High-Active**
-       definiert und eine **Negation ist unnötig** (:bcy:`ih`).
+             gpio conf gpio@40014000 21 :bcy:`il`
 
-       Die GPIO Konfiguration muss hier richtig lauten:
+        - Die zusätzlich angeschlossene Taste an **GP3** wird beim Drücken
+          nach Plus (VCC) geschaltet. Der aktive Pegel für das *asserting*
+          des logischen Werts '1' auf Ebene der Applikationssoftware ist
+          somit als **High-Active** definiert und eine **Negation ist
+          unnötig** (:bcy:`ih`).
 
-       .. parsed-literal::
-          :class: code
+          Die GPIO Konfiguration muss hier richtig lauten:
 
-          gpio conf gpio@40014000 3 :bcy:`ih`
+          .. parsed-literal::
+             :class: code
 
-   * - .. image:: /_images/doing/cytron-maker-pi-rp2040-sch-s6.*
-          :align: center
-     - .. image:: /_images/doing/grove-button-sch-v12.*
-          :align: center
+             gpio conf gpio@40014000 3 :bcy:`ih`
+
+      * - .. image:: /_images/doing/cytron-maker-pi-rp2040-sch-s6.*
+             :align: center
+        - .. image:: /_images/doing/grove-button-sch-v12.*
+             :align: center
 
 .. include:: yourspace.rsti
 
