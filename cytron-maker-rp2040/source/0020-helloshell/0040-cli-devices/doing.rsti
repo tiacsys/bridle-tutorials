@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -13,7 +14,10 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
    :bgn:`uart:~$` _
 
-.. rst-class:: page-break
+Zephyr kennt ein umfangreiches und sehr flexibles Gerätetreiber Modell, siehe
+auch :ref:`zephyr:device_model_api` in der Zephyr Dokumentation. Wie viele und
+welche Geräte zum Zeitpunkt der Kompilierung aktiviert wurden, verrät dir das
+Unterkommando :bcy:`device list`.
 
 -----------------------------------------------------------------------------
 
@@ -22,12 +26,11 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Zephyr kennt ein umfangreiches und sehr flexibles Gerätetreiber Modell, siehe
-auch :ref:`zephyr:device_model_api` in der Zephyr Dokumentation. Wie viele und
-welche Geräte zum Zeitpunkt der Kompilierung aktiviert wurden, verrät dir das
-Unterkommando :bcy:`device list`, gib ein::
+.. compound::
 
-   device list
+   Gib ein::
+
+      device list
 
 -----------------------------------------------------------------------------
 
@@ -36,25 +39,27 @@ Unterkommando :bcy:`device list`, gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   devices:
-   - clock-controller@40008000 (READY)
-   - reset-controller@4000c000 (READY)
-   - snippet_cdc_acm_console_uart (READY)
-   - uart@40034000 (READY)
-   - timer@40054000 (READY)
-   - pio@50200000 (READY)
-   - gpio@40014000 (READY)
-   - adc@4004c000 (READY)
-   - flash-controller@18000000 (READY)
-   - i2c@40044000 (READY)
-   - pwm@40050000 (READY)
-   - vreg@40064000 (READY)
-   - pwm_leds (READY)
+   .. parsed-literal::
+      :class: code
+
+      devices:
+      - clock-controller@40008000 (READY)
+      - reset-controller@4000c000 (READY)
+      - snippet_cdc_acm_console_uart (READY)
+      - uart@40034000 (READY)
+      - timer@40054000 (READY)
+      - pio@50200000 (READY)
+      - gpio@40014000 (READY)
+      - adc@4004c000 (READY)
+      - flash-controller@18000000 (READY)
+      - i2c@40044000 (READY)
+      - pwm@40050000 (READY)
+      - vreg@40064000 (READY)
+      - pwm_leds (READY)
 
 Die zurückgegebene Liste entspricht im Großen und Ganzen genau jenen Knoten
 (HW-Instanzen), welche im zugrundeliegenden :ref:`zephyr:devicetree` deines
@@ -65,20 +70,22 @@ einen entsprechenden Gerätetreiber in den Quellen von Zephyr (oder auch Bridle)
 aktiviert und das Build-System :ref:`CMake <zephyr:cmake-details>` diesen
 vollautomatisch in die **Zephyr UF2 Firmware** eingebaut.
 
-Am Ende eines jeden Eintrags erkennst du an dem ``(READY)``, dass sich der
-zugehörige Treiber ordentlich initialisieren konnte, dieser also seine
+Am Ende eines jeden Eintrags erkennst du an dem ``(READY)``, dass sich
+der zugehörige Treiber ordentlich initialisieren konnte, dieser also seine
 HW-Instanz tatsächlich zum Startzeitpunkt vorgefunden hat, und man mit diesem
-Gerät über eine geeignete Zephyr API arbeiten kann. Andere Zustände werden hier
-auch oft angezeigt. So kennt das in Zephyr mittlerweile gut integrierte
-:ref:`zephyr:pm-guide` noch die Zustände ``(off)``, ``(active)`` oder
-``(suspended)``. Der Zustand ``(DISABLED)`` wäre ein Indiz für fehlende
-Abhängigkeiten oder falsche Reihenfolgen der Initialisierung. Auch ein Fehler
-im :spelling:ignore:`Konfigurations-` und Build-Management (Devicetree, Kconfig
-und CMake) auf Quellcode-Ebene kann diesen Zustand erzeugen, also z.B. eine
-HW-Instanz wurde aktiviert, der Treiber dazu mit eingebunden, aber auf dem
-Zielsystem gibt es diese Hardware überhaupt nicht.
+Gerät über eine geeignete Zephyr API arbeiten kann.
 
-.. rst-class:: page-break
+Andere Zustände werden hier auch oft angezeigt. So kennt das in Zephyr
+mittlerweile recht gut integrierte :ref:`zephyr:pm-guide` noch die Zustände
+``(off)``, ``(active)`` oder ``(suspended)``.
+
+Der Zustand ``(DISABLED)`` wäre ein Indiz für fehlende Abhängigkeiten oder
+falsche Reihenfolgen der Initialisierung. Auch ein Fehler im
+:spelling:ignore:`Konfigurations-` und Build-Management (:ref:`Devicetree
+<zephyr:devicetree>`, :ref:`Kconfig <zephyr:kconfig>` und :ref:`CMake
+<zephyr:cmake-details>`) auf Quellcode-Ebene kann diesen Zustand erzeugen,
+also z.B. eine HW-Instanz wurde aktiviert, der Treiber dazu mit eingebunden,
+aber auf dem Zielsystem gibt es diese Hardware überhaupt nicht.
 
 In den folgenden Übungen werden wir nun Kommandos gegen spezialisierte Zephyr
 APIs ansehen. Diese Kommandos wollen immer ein Gerät genannt bekommen. Das wird
