@@ -1,4 +1,5 @@
-.. rubric:: Durchführung
+Durchführung
+************
 
 Hole deinen **Terminalemulator** in den Vordergrund und **stelle sicher**,
 das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
@@ -13,6 +14,204 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
    :bgn:`uart:~$` _
 
+Schnell-Hilfe
+=============
+
+Tippe doch einfach mal an deinem Host-PC, innerhalb deines Terminalemulators,
+auf die Tabulatortaste :kbd:`⇥` und schau, was dir von der Zephyr Shell
+zurückgegeben wird.
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Drücker die Tabulatortaste :kbd:`⇥` an deinem Host-PC.
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
+
+   :ign:`Folgendes wird erscheinen:`
+
+   .. parsed-literal::
+      :class: code
+
+        :bcy:`adc        bridle     clear      dac        device     devmem     flash`
+        :bcy:`gpio       hello      help       history    hwinfo     i2c        kernel`
+        :bcy:`led        log        pwm        regulator  rem        resize     retval`
+        :bcy:`rtc        sensor     shell      timer`
+      :bgn:`uart:~$` _
+
+Damit hast du jetzt schon die in der Zephyr Shell eingebaute (optionale)
+*TAB-Completion* kennengelernt.
+
+Eingebaute Hilfe
+================
+
+Du siehst, es gibt reichlich Kommandos zu entdecken. Lass uns mit der Hilfe
+beginnen.
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Gib entweder das vollständige Kommando ein::
+
+      help
+
+   … oder probiere auch gleich die *TAB-Completion* aus. Dann würdest du z.B.
+   nur ``he`` gefolgt von der Tabulatortaste :kbd:`⇥` eingeben. Damit endest du
+   in folgendem Dialog:
+
+   .. parsed-literal::
+      :class: code
+
+      :bgn:`uart:~$` he
+        :bcy:`hello  help`
+      :bgn:`uart:~$` hel
+
+Du musst das Kommando :bcy:`help` also wirklich ausschreiben, da es da noch
+ein Kommando :bcy:`hello` gibt, ein spezielles Kommando, das es nur in diesem
+Beispiel ``helloshell`` aus dem Bridle Projekt gibt.
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
+
+   :ign:`Folgendes wird erscheinen:`
+
+   .. parsed-literal::
+      :class: code
+
+      Please press the <Tab> button to see all available commands.
+      You can also use the <Tab> button to prompt or auto-complete all commands
+      or its subcommands. You can try to call commands with <-h> or <--help>
+      parameter for more information.
+
+      Shell supports following meta-keys:
+        Ctrl + (a key from: abcdefklnpuw)
+        Alt  + (a key from: bf)
+      Please refer to shell documentation for more details.
+
+      Available commands:
+        adc        : ADC commands
+        bridle     : Bridle commands.
+        clear      : Clear screen.
+        dac        : DAC shell commands
+        device     : Device commands
+        devmem     : Read/write physical memory
+                     Usage:
+                     Read memory at address with optional width:
+                     devmem address [width]
+                     Write memory at address with mandatory width and value:
+                     devmem address <width> <value>
+        flash      : Flash shell commands
+        gpio       : GPIO commands
+        hello      : say hello
+        help       : Prints the help message.
+        history    : Command history.
+        hwinfo     : HWINFO commands
+        i2c        : I2C commands
+        kernel     : Kernel commands
+        led        : LED commands
+        log        : Commands for controlling logger
+        pwm        : PWM shell commands
+        regulator  : Regulator playground
+        rem        : Ignore lines beginning with 'rem '
+        resize     : Console gets terminal screen size or assumes default in case
+                     the readout fails. It must be executed after each terminal
+                     width change to ensure correct text display.
+        retval     : Print return value of most recent command
+        rtc        : RTC commands
+        sensor     : Sensor commands
+        shell      : Useful, not Unix-like shell commands.
+        timer      : Timer commands
+      :bgn:`uart:~$` _
+
+.. rst-class:: page-break
+
+Shell und Logging
+=================
+
+Für eine "Grundausstattung" sind das schon reichlich viele Kommandos. Viele
+davon haben auch Unterkommandos. Das bekommt man durch die *TAB-Completion*
+oder den Aufruf eines Kommandos mit dem Parameter ``-h`` (kurze Schreibweise)
+oder ``--help`` (lange Schreibweise) heraus.
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Gib doch einfach mal folgendes ein::
+
+      shell -h
+
+   … oder::
+
+      shell --help
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
+
+   :ign:`Folgendes wird erscheinen:`
+
+   .. parsed-literal::
+      :class: code
+
+      shell - Useful, not Unix-like shell commands.
+      Subcommands:
+        backends        : List active shell backends.
+
+        backspace_mode  : Toggle backspace key mode.
+                          Some terminals are not sending separate escape code for
+                          backspace and delete button. This command forces shell
+                          to interpret delete key as backspace.
+        colors          : Toggle colored syntax.
+        vt100           : Toggle vt100 commands.
+        prompt          : Toggle prompt.
+        echo            : Toggle shell echo.
+        stats           : Shell statistics.
+      :bgn:`uart:~$` _
+
+Shell Backend
+-------------
+
+Das erste Unterkommando deutet auf eine sehr interessante Information hin.
+Hatten wir doch in der :ref:`vorangegangenen Übung <hs-build-upload>` gelernt,
+dass die *Shell* und das *Logging* koexistieren. Beide müssen sich unter
+Umständen die nur einmalig vorhandene Hardware über die *Console* teilen.
+
 .. rst-class:: page-break
 
 -----------------------------------------------------------------------------
@@ -22,9 +221,11 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Tippe doch einfach mal an deinem Host-PC, innerhalb deines Terminalemulators,
-auf die Tabulatortaste :kbd:`⇥` und schau, was dir von der Zephyr Shell
-zurückgegeben wird.
+.. compound::
+
+   Schauen wir doch mal nach, was uns dieses Unterkommando zurück gibt::
+
+      shell backends
 
 -----------------------------------------------------------------------------
 
@@ -33,212 +234,25 @@ zurückgegeben wird.
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-     :bcy:`adc        bridle     clear      dac        device     devmem     flash`
-     :bcy:`gpio       hello      help       history    hwinfo     i2c        kernel`
-     :bcy:`led        log        pwm        regulator  rem        resize     retval`
-     :bcy:`rtc        sensor     shell      timer`
-   :bgn:`uart:~$` _
+   .. parsed-literal::
+      :class: code
 
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-Du siehst, es gibt reichlich Kommandos zu entdecken. Lass uns mit der Hilfe
-beginnen. Gib entweder das vollständige Kommando ein::
-
-   help
-
-… oder probiere auch gleich die *TAB-Completion* aus. Dann würdest du z.B.
-nur ``he`` gefolgt von der Tabulatortaste :kbd:`⇥` eingeben. Damit endest du
-in folgendem Dialog:
-
-.. parsed-literal::
-   :class: code
-
-   :bgn:`uart:~$` he
-     :bcy:`hello  help`
-   :bgn:`uart:~$` hel
-
-Du musst das Kommando :bcy:`help` also wirklich ausschreiben, da es da noch
-ein Kommando :bcy:`hello` gibt, ein spezielles Kommando, das es nur in diesem
-Bridle Beispiel ``helloshell`` gibt.
-
------------------------------------------------------------------------------
-
-.. ..... RESULT .............................................................
-
-.. image:: /_images/symbol-observe-or.*
-   :class: sidecar
-
-:ign:`Folgendes wird erscheinen:`
-
-.. parsed-literal::
-   :class: code
-
-   Please press the <Tab> button to see all available commands.
-   You can also use the <Tab> button to prompt or auto-complete all commands
-   or its subcommands. You can try to call commands with <-h> or <--help>
-   parameter for more information.
-
-   Shell supports following meta-keys:
-     Ctrl + (a key from: abcdefklnpuw)
-     Alt  + (a key from: bf)
-   Please refer to shell documentation for more details.
-
-   Available commands:
-     adc        : ADC commands
-     bridle     : Bridle commands.
-     clear      : Clear screen.
-     dac        : DAC shell commands
-     device     : Device commands
-     devmem     : Read/write physical memory
-                  Usage:
-                  Read memory at address with optional width:
-                  devmem address [width]
-                  Write memory at address with mandatory width and value:
-                  devmem address <width> <value>
-     flash      : Flash shell commands
-     gpio       : GPIO commands
-     hello      : say hello
-     help       : Prints the help message.
-     history    : Command history.
-     hwinfo     : HWINFO commands
-     i2c        : I2C commands
-     kernel     : Kernel commands
-     led        : LED commands
-     log        : Commands for controlling logger
-     pwm        : PWM shell commands
-     regulator  : Regulator playground
-     rem        : Ignore lines beginning with 'rem '
-     resize     : Console gets terminal screen size or assumes default in case
-                  the readout fails. It must be executed after each terminal
-                  width change to ensure correct text display.
-     retval     : Print return value of most recent command
-     rtc        : RTC commands
-     sensor     : Sensor commands
-     shell      : Useful, not Unix-like shell commands.
-     timer      : Timer commands
-   :bgn:`uart:~$` _
-
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-Für eine "Grundausstattung" sind das schon reichlich viele Kommandos. Viele
-davon haben auch Unterkommandos. Das bekommt man durch die *TAB-Completion*
-oder den Aufruf eines Kommandos mit dem Parameter ``-h`` (kurze Schreibweise)
-oder ``--help`` (lange Schreibweise) heraus. Gib doch einfach mal folgendes
-ein::
-
-   shell -h
-
-oder::
-
-   shell --help
-
------------------------------------------------------------------------------
-
-.. ..... RESULT .............................................................
-
-.. image:: /_images/symbol-observe-or.*
-   :class: sidecar
-
-:ign:`Folgendes wird erscheinen:`
-
-.. parsed-literal::
-   :class: code
-
-   shell - Useful, not Unix-like shell commands.
-   Subcommands:
-     backends        : List active shell backends.
-
-     backspace_mode  : Toggle backspace key mode.
-                       Some terminals are not sending separate escape code for
-                       backspace and delete button. This command forces shell
-                       to interpret delete key as backspace.
-     colors          : Toggle colored syntax.
-     vt100           : Toggle vt100 commands.
-     prompt          : Toggle prompt.
-     echo            : Toggle shell echo.
-     stats           : Shell statistics.
-   :bgn:`uart:~$` _
-
------------------------------------------------------------------------------
-
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-Das erste Unterkommando deutet auf eine sehr interessante Information hin.
-Hatten wir doch in der :ref:`vorangegangenen Übung <hs-build-upload>` gelernt,
-dass die *Shell* und das *Logging* koexistieren. Beide müssen sich unter
-Umständen die nur einmalig vorhandene Hardware über die *Console* teilen.
-Schauen wir doch mal nach, was uns dieses Unterkommando zurück gibt::
-
-   shell backends
-
------------------------------------------------------------------------------
-
-.. ..... RESULT .............................................................
-
-.. image:: /_images/symbol-observe-or.*
-   :class: sidecar
-
-:ign:`Folgendes wird erscheinen:`
-
-.. parsed-literal::
-   :class: code
-
-   Active shell backends:
-       0. :uart:~$  (shell_uart)
-   :bgn:`uart:~$` _
+      Active shell backends:
+          0. :uart:~$  (shell_uart)
+      :bgn:`uart:~$` _
 
 Das sieht **plausible** aus, ist die **Shell** ja gerade **an eine virtuelle
 UART** aus dem *Zephyr USB Stack*, die **USB-CDC/ACM Klasse**, gebunden.
 
------------------------------------------------------------------------------
+Logging Backend
+---------------
 
-.. ..... ACTION .............................................................
-
-.. image:: /_images/symbol-doing-vi.*
-   :class: sidecar
-
-Das *Logging* besitzt ein ähnliches Shell Kommando. Wir kontrollieren das mit::
-
-   log backend
-
------------------------------------------------------------------------------
-
-.. ..... RESULT .............................................................
-
-.. image:: /_images/symbol-observe-or.*
-   :class: sidecar
-
-:ign:`Folgendes wird erscheinen:`
-
-.. parsed-literal::
-   :class: code
-
-   backend - Logger backends commands.
-   Subcommands:
-     shell_uart_backend
-   :bgn:`uart:~$` _
-
-Das *Backend* vom Logging und der Shell kooperieren also und sind der Unterbau
-für beide Dienste, um über die einmalig vorhandene *Console* mit der Außenwelt
-zu kommunizieren.
+Das *Logging* besitzt ein ähnliches Shell Kommando, das Kommando ``log``. Auch
+das *Logging* benötigt einen Ausgabekanal für den Benutzer, ein *Backend*.
 
 -----------------------------------------------------------------------------
 
@@ -247,15 +261,11 @@ zu kommunizieren.
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Wollen wir uns zum Schluss noch das erwähnte Kommando :bcy:`hello` ansehen.
-Sicher können wir erahnen, was es machen wird. Wir wollen das aber genau wissen
-und befragen die Hilfe, gib ein::
+.. compound::
 
-   hello -h
+   Wir kontrollieren das mit::
 
-oder::
-
-   hello --help
+      log backend
 
 -----------------------------------------------------------------------------
 
@@ -264,13 +274,30 @@ oder::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   hello - say hello
-   :bgn:`uart:~$` _
+   .. parsed-literal::
+      :class: code
+
+      backend - Logger backends commands.
+      Subcommands:
+        shell_uart_backend
+      :bgn:`uart:~$` _
+
+Das *Backend* vom *Logging* und der *Shell* kooperieren also mit- und
+untereinander. Sie sind der Unterbau für beide Dienste, um über die einmalig
+vorhandene *Console* mit der Außenwelt zu kommunizieren.
+
+.. rst-class:: page-break
+
+Erweiterung durch Bridle
+========================
+
+Wollen wir uns zum Schluss noch das weiter oben bereits erwähnte Kommando
+:bcy:`hello` ansehen. Sicher können wir erahnen, was es machen wird. Wir
+wollen das aber genau wissen und befragen die Hilfe.
 
 -----------------------------------------------------------------------------
 
@@ -279,9 +306,15 @@ oder::
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Dann lass uns das machen::
+.. compound::
 
-   hello
+   Gib ein::
+
+      hello -h
+
+   … oder::
+
+      hello --help
 
 -----------------------------------------------------------------------------
 
@@ -290,19 +323,60 @@ Dann lass uns das machen::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   Hello from shell.
-   :bgn:`uart:~$` _
+   .. parsed-literal::
+      :class: code
+
+      hello - say hello
+      :bgn:`uart:~$` _
+
+-----------------------------------------------------------------------------
+
+.. ..... ACTION .............................................................
+
+.. image:: /_images/symbol-doing-vi.*
+   :class: sidecar
+
+.. compound::
+
+   Dann lass uns das machen::
+
+      hello
+
+-----------------------------------------------------------------------------
+
+.. ..... RESULT .............................................................
+
+.. image:: /_images/symbol-observe-or.*
+   :class: sidecar
+
+.. compound::
+
+   :ign:`Folgendes wird erscheinen:`
+
+   .. parsed-literal::
+      :class: code
+
+      Hello from shell.
+      :bgn:`uart:~$` _
 
 Wenn dich die Implementierung dieses Kommandos interessiert, dann schaue dir
 später in aller Ruhe den Quellcode an – es ist nur eine kurze Datei:
 
    |bridle_shell_cmd_hello_c|
 
+.. rst-class:: page-break
+
+Kommando-Historie
+=================
+
+Eine letzte "schicke" Eigenschaft der Zephyr Shell ist die *History*. Wenn
+eingeschaltet, kannst du dir jederzeit die letzten von der Shell ausgeführten
+Kommandozeilen anzeigen lassen.
+
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -310,11 +384,11 @@ später in aller Ruhe den Quellcode an – es ist nur eine kurze Datei:
 .. image:: /_images/symbol-doing-vi.*
    :class: sidecar
 
-Eine letzte "schicke" Eigenschaft der Zephyr Shell ist die *History*. Wenn
-eingeschaltet, kannst du dir jederzeit die letzten von der Shell ausgeführten
-Kommandozeilen anzeigen lassen::
+.. compound::
 
-   history
+   Git ein::
+
+      history
 
 -----------------------------------------------------------------------------
 
@@ -323,18 +397,27 @@ Kommandozeilen anzeigen lassen::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-:ign:`Folgendes wird erscheinen:`
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   :ign:`Folgendes wird erscheinen:`
 
-   [  0] history
-   [  1] hello
-   [  2] hello -h
-   [  3] log backend
-   [  4] shell backends
-   [  5] shell --help
-   [  6] help
+   .. parsed-literal::
+      :class: code
+
+      [  0] history
+      [  1] hello
+      [  2] hello -h
+      [  3] log backend
+      [  4] shell backends
+      [  5] shell --help
+      [  6] help
+
+.. admonition:: Gut zu wissen
+   :class: good-to-know info
+
+   Mit den Cursor-Tasten :kbd:`⇡` und :kbd:`⇣` kannst du natürlich in der
+   Kommando-Historie vor und zurück gehen. Ebenso funktioniert dann auch
+   das Editieren der jeweiligen Kommandozeile.
 
 .. include:: yourspace.rsti
 
