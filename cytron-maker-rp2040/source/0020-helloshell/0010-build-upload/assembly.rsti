@@ -1,36 +1,38 @@
-.. rubric:: Gesamtaufbau
+.. admonition:: Gesamtaufbau :rd:`(Komplettaufbau)`
+   :class: note
+   :collapsible: open
 
-.. only:: rinoh
+   .. only:: rinoh
 
-   .. list-table::
+      .. list-table::
+         :align: center
+         :width: 100%
+
+         * - Siehe :numref:`hs-hw-setup-zephyr-shell`. Aus Platzgründen befindet
+             sich die Abbildung auf der folgenden Seite.
+
+   Im Verlauf dieser Übung werden an deinen aktuellen Aufbau aus
+   :numref:`gs-hw-setup-usb-console` aus der
+   :ref:`letzten Übung <gs-setup-usb-console>`
+   weitere Komponenten angeschlossen. Das sind:
+
+   - **zusätzliche Taste**: Grove – Button
+   - **zusätzliche LED**: Grove – LED
+   - **analoge Quelle**: Grove – Potentiometer
+   - **I²C Sensor**: Grove – Barometer Sensor BMP280
+   - **Aktoren**: Servo Motoren:
+
+     - Tower Pro – SG90 Micro Servo 180°
+     - Feetech – FS90R Micro Servo 360°
+
+   - **zusätzliche Stromversorgung**: 4x AA/LR6 (Mignon) Batteriehalter
+
+   .. figure:: /_images/assemblies/hs-hw-setup-zephyr-shell.*
+      :name: hs-hw-setup-zephyr-shell
+      :figclass: sideways
       :align: center
-      :width: 100%
+      :scale: 95%
 
-      * - Siehe :numref:`hs-hw-setup-zephyr-shell`. Aus Platzgründen befindet
-          sich die Abbildung auf der folgenden Seite.
-
-Im Verlauf dieser Übung werden an deinen aktuellen Aufbau aus
-:numref:`gs-hw-setup-usb-console` aus der
-:ref:`letzten Übung <gs-setup-usb-console>` weitere Komponenten angeschlossen.
-Das sind:
-
-- **zusätzliche Taste**: Grove – Button
-- **zusätzliche LED**: Grove – LED
-- **analoge Quelle**: Grove – Potentiometer
-- **I²C Sensor**: Grove – Barometer Sensor BMP280
-- **Aktoren**: Servo Motoren:
-
-  - Tower Pro – SG90 Micro Servo 180°
-  - Feetech – FS90R Micro Servo 360°
-
-- **zusätzliche Stromversorgung**: 4x AA/LR6 (Mignon) Batteriehalter
-
-.. figure:: /_images/assemblies/hs-hw-setup-zephyr-shell.*
-   :name: hs-hw-setup-zephyr-shell
-   :figclass: sideways
-   :align: center
-   :scale: 95%
-
-   *Cytron – Maker Pi RP2040* mit zusätzlicher Ausstattung
+      *Cytron – Maker Pi RP2040* mit zusätzlicher Ausstattung
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

@@ -1,39 +1,39 @@
-.. rst-class:: page-break
-
-   .. only:: rinoh
-
-      |nbsp|
-.. QUIRKS: Only with this dummy paragraph, the special rinohtype class
-   'page-break-paragraph' react as expected. But the '.. rubric::' directive
-   should also be handled as a 'ParagraphStyle' and trigger that class, But
-   it doesn't work as expected. Fix this later!
-
-.. rubric:: Durchführung
+Durchführung
+************
 
 **Schließe** zunächst an deinen aktuellen Hardwareaufbau aus
 :numref:`gs-hw-setup-usb-console` **die zusätzlichen Komponenten** wie in
-:numref:`hs-hw-setup-zephyr-shell` dargestellten **an**. **Achte** dabei genau
-**auf die richtige Polung** an der Schraubklemme für den Batteriehalter
-(grüner Block, siehe :numref:`cytron-maker-pi-rp2040-vin`)
-und die 3-poligen Pfostenleisten für die 4 Servo Motoren
-(siehe :numref:`cytron-maker-pi-rp2040-servo`).
-Einen passenden **Schraubendreher findest du in deiner "Experimentierbox"**. Die
-Zuordnung der Servo Motoren spielt für uns hier keine Rolle. Jeder der 4 Servo
-Motoren kann an jedem der 4 Pfostenleisten betrieben werden.
+:numref:`hs-hw-setup-zephyr-shell` dargestellten **an**.
 
-.. figure:: /_images/doing/cytron-maker-pi-rp2040-vin.*
-   :name: cytron-maker-pi-rp2040-vin
-   :align: center
+.. admonition:: Beachte bitte!
+   :class: red-thick-border failure
+   :collapsible: open
 
-   Schraubklemme für ``Vin`` auf dem *Cytron – Maker Pi RP2040*
+   **Achte** dabei genau **auf die richtige Polung** an der Schraubklemme
+   für den Batteriehalter (grüner Block, siehe
+   :numref:`cytron-maker-pi-rp2040-vin`) und die 3-poligen Pfostenleisten
+   für die 4 Servo Motoren (siehe :numref:`cytron-maker-pi-rp2040-servo`).
 
-.. figure:: /_images/doing/cytron-maker-pi-rp2040-servo.*
-   :name: cytron-maker-pi-rp2040-servo
-   :align: center
+   Einen passenden **Schraubendreher findest du in deiner "Experimentierbox"**.
+   Die Zuordnung der Servo Motoren spielt für uns hier keine Rolle. Jeder der
+   4 Servo Motoren kann an jedem der 4 Pfostenleisten betrieben werden.
 
-   Pfostenleisten für Servo Motoren auf dem *Cytron – Maker Pi RP2040*
+   .. figure:: /_images/doing/cytron-maker-pi-rp2040-vin.*
+      :name: cytron-maker-pi-rp2040-vin
+      :align: center
 
-.. rst-class:: page-break
+      Schraubklemme für ``Vin`` auf dem *Cytron – Maker Pi RP2040*
+
+   .. figure:: /_images/doing/cytron-maker-pi-rp2040-servo.*
+      :name: cytron-maker-pi-rp2040-servo
+      :align: center
+
+      Pfostenleisten für Servo Motoren auf dem *Cytron – Maker Pi RP2040*
+
+Zephyr UF2 Firmware aus dem Bridle Beispiel ``helloshell`` bauen und laden
+==========================================================================
+
+Hole deine **Online-Sitzung von VS Code** in den Vordergrund.
 
 -----------------------------------------------------------------------------
 
@@ -42,11 +42,15 @@ Motoren kann an jedem der 4 Pfostenleisten betrieben werden.
 .. image:: /_images/symbol-coder-server-bl.*
    :class: sidecar
 
-Hole deine **Online-Sitzung von VS Code** in den Vordergrund und **baue die
-Zephyr UF2 Firmware** ``helloshell``, gib ein::
+.. compound::
 
-   west build -p -b cytron_maker_pi_rp2040        -S usb-console \
-              bridle/samples/helloshell
+   **Baue die Zephyr UF2 Firmware** ``helloshell``, gib ein:
+
+   .. parsed-literal::
+      :class: code
+
+      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+                 **bridle/samples/helloshell**
 
 -----------------------------------------------------------------------------
 
@@ -58,6 +62,11 @@ Zephyr UF2 Firmware** ``helloshell``, gib ein::
 **Lade** dir die **Zephyr UF2 Firmware** herunter und lade diese anschließend
 **auf dein MCU-Board**.
 
+Zephyr UF2 Firmware aus dem Bridle Beispiel ``helloshell`` benutzen
+===================================================================
+
+Hole deinen **Terminalemulator** in den Vordergrund.
+
 -----------------------------------------------------------------------------
 
 .. ..... ACTION .............................................................
@@ -65,18 +74,19 @@ Zephyr UF2 Firmware** ``helloshell``, gib ein::
 .. image:: /_images/symbol-observe-or.*
    :class: sidecar
 
-Hole deinen **Terminalemulator** in den Vordergrund und **beobachte die
-Ausgaben**, folgendes muss zu sehen sein:
+.. compound::
 
-.. parsed-literal::
-   :class: code
+   **Beobachte die Ausgaben**, folgendes muss zu sehen sein:
 
-   \*\*\*\*\* delaying boot 4000ms (per build configuration) \*\*\*\*\*
-   [00:00:00.189,000] :yl:`<wrn> udc_rpi: BUS RESET`
-   [00:00:00.269,000] :yl:`<wrn> udc_rpi: BUS RESET`
-   \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
-   Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
-   uart:~$ _
+   .. parsed-literal::
+      :class: code
+
+      \*\*\*\*\* delaying boot 4000ms (per build configuration) \*\*\*\*\*
+      [00:00:00.189,000] :yl:`<wrn> udc_rpi: BUS RESET`
+      [00:00:00.269,000] :yl:`<wrn> udc_rpi: BUS RESET`
+      \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
+      Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
+      uart:~$ _
 
 .. include:: yourspace.rsti
 
