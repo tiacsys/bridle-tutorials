@@ -15,7 +15,6 @@ Shell-Kommando ``kernel``
    Der Name lässt schon erahnen, es geht um den Zugriff auf Informationen
    aus dem Kern deines laufenden Systems.
 
-
 .. include:: bom.rsti
 .. include:: assembly.rsti
 .. include:: doing.rsti
