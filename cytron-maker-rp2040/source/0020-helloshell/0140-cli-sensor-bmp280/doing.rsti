@@ -11,7 +11,7 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    [00:00:00.179,000] :byl:`<wrn> udc_rpi: BUS RESET`
    [00:00:00.267,000] :byl:`<wrn> udc_rpi: BUS RESET`
    \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
-   Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
+   Hello World! I'm THE SHELL from |BOARD|
    :bgn:`uart:~$` _
 
 -----------------------------------------------------------------------------
@@ -171,7 +171,7 @@ Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  bridle/samples/helloshell                          \\
               **-- -DEXTRA_DTC_OVERLAY_FILE=$(pwd)/grove_i2c-bmp280@77.overlay**
 
@@ -208,7 +208,7 @@ Hole deinen **Terminalemulator** in den Vordergrund.
       [00:00:00.189,000] :yl:`<wrn> udc_rpi: BUS RESET`
       [00:00:00.269,000] :yl:`<wrn> udc_rpi: BUS RESET`
       \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
-      Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
+      Hello World! I'm THE SHELL from |BOARD|
       uart:~$ _
 
 .. ..... INFO ...............................................................

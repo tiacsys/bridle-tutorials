@@ -136,6 +136,7 @@ language = 'de'
 
 rst_prolog = '''
 .. include:: /roles.txt
+.. include:: /shortcuts.txt
 .. |docsrc| replace:: {docsrc}
 .. |docstat| replace:: {docstat}
 .. |docnumb| replace:: {docnumb}
@@ -163,7 +164,8 @@ rst_prolog = '''
 .. |bridle_release_number_tt| replace:: ``{bridle_release}``
 .. |bridle_release_number_em| replace:: *{bridle_release}*
 .. |bridle_branch| replace:: ``v{bridle_release}-branch``
-.. |bridle_shell_cmd_hello_c| replace:: https://github.com/tiacsys/bridle/blob/v{bridle_release}-branch/subsys/shell/modules/cmd_hello.c
+.. |bridle_shell_cmd_hello_c| replace::
+   https://github.com/tiacsys/bridle/blob/v{bridle_release}-branch/subsys/shell/modules/cmd_hello.c
 .. |zephyr_release| replace:: v{zephyr_release}
 .. |zephyr_release_tt| replace:: ``v{zephyr_release}``
 .. |zephyr_release_em| replace:: *v{zephyr_release}*

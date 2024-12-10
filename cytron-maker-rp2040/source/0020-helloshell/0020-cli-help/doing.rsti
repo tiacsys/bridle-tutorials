@@ -11,7 +11,7 @@ das du nach einem Reset (``RST`` Taste kurz gedrückt), folgendes siehst:
    [00:00:00.179,000] :byl:`<wrn> udc_rpi: BUS RESET`
    [00:00:00.267,000] :byl:`<wrn> udc_rpi: BUS RESET`
    \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
-   Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
+   Hello World! I'm THE SHELL from |BOARD|
    :bgn:`uart:~$` _
 
 Schnell-Hilfe

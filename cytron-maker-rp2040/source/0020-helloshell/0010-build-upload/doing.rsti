@@ -49,7 +49,7 @@ Hole deine **Online-Sitzung von VS Code** in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  **bridle/samples/helloshell**
 
 -----------------------------------------------------------------------------
@@ -85,7 +85,7 @@ Hole deinen **Terminalemulator** in den Vordergrund.
       [00:00:00.189,000] :yl:`<wrn> udc_rpi: BUS RESET`
       [00:00:00.269,000] :yl:`<wrn> udc_rpi: BUS RESET`
       \*\*\* Booting Zephyr OS build zephyr-v3.6… (delayed boot 4000ms) \*\*\*
-      Hello World! I'm THE SHELL from cytron_maker_pi_rp2040
+      Hello World! I'm THE SHELL from |BOARD|
       uart:~$ _
 
 .. include:: yourspace.rsti

@@ -1,0 +1,6 @@
+.. |BOARD| replace:: cytron_maker_pi_rp2040
+.. |BOARD_tt| replace:: ``cytron_maker_pi_rp2040``
+.. |BOARD_st| replace:: **cytron_maker_pi_rp2040**
+.. |BOARD_em| replace:: *cytron_maker_pi_rp2040*
+
+.. vi: ft=rst ai ts=3 et sw=3 sta

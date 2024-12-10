@@ -29,7 +29,7 @@ Hole deine **Online-Sitzung von VS Code** in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040 **zephyr/samples/basic/button**
+      west build -p -b |BOARD| **zephyr/samples/basic/button**
 
 -----------------------------------------------------------------------------
 

@@ -33,7 +33,7 @@ Hole deine **Online-Sitzung von VS Code** in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        **-S usb-console** \\
+      west build -p -b |BOARD|        **-S usb-console** \\
                  zephyr/samples/basic/button
 
 -----------------------------------------------------------------------------

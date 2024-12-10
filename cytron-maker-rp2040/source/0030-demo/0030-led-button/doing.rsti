@@ -128,7 +128,7 @@ Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  **zephyr/samples/basic/blinky**                        \\
               **-- -DEXTRA_DTC_OVERLAY_FILE=$(pwd)/makerpi-led_gp5.overlay**
 
@@ -201,7 +201,7 @@ Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  **zephyr/samples/basic/blinky_pwm**                    \\
               **-- -DEXTRA_DTC_OVERLAY_FILE="**                         \\
                     **$(pwd)/makerpi-led_gp5.overlay**                  \\
@@ -276,7 +276,7 @@ Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  **zephyr/samples/basic/fade_led**                      \\
               **-- -DEXTRA_DTC_OVERLAY_FILE="**                         \\
                     **$(pwd)/makerpi-led_gp5.overlay**                  \\
@@ -350,7 +350,7 @@ Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  **zephyr/samples/basic/button**                        \\
               **-- -DEXTRA_DTC_OVERLAY_FILE="**                         \\
                     **$(pwd)/makerpi-led_gp5.overlay**                  \\

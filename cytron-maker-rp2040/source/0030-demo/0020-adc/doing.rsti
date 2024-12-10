@@ -54,7 +54,7 @@ Hole deine **Online-Sitzung von VS Code** wieder in den Vordergrund.
    .. parsed-literal::
       :class: code
 
-      west build -p -b cytron_maker_pi_rp2040        -S usb-console \\
+      west build -p -b |BOARD|        -S usb-console \\
                  **zephyr/samples/drivers/adc/adc_dt**                  \\
               **-- -DEXTRA_DTC_OVERLAY_FILE=$(pwd)/rp2040-adc23.overlay**
 

@@ -292,3 +292,5 @@
 
 .. role:: rpi-pico-uart-dfl
    :class: rpi-pico-uart-dfl
+
+.. vi: ft=rst ai ts=3 et sw=3 sta
