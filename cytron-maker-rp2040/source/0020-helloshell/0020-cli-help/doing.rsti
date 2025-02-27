@@ -312,7 +312,7 @@ Kommandozeilen anzeigen lassen.
 
 .. compound::
 
-   Git ein::
+   Gib ein::
 
       history
 
