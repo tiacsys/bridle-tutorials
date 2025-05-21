@@ -97,8 +97,8 @@ Testen der Benutzer-LED und Taste
    #. Beispiele und Demonstrationen:
 
       - von :ref:`Bridle unterstützt <bridle:examples>`
-      - von :ref:`Bridle's Zephyr unterstützt <zephyr:samples-and-demos>`
-      - von :ref:`Zephyr upstream unterstützt <zephyr-us:samples-and-demos>`
+      - von :doc:`Bridle's Zephyr unterstützt <zephyr:samples/index>`
+      - von :doc:`Zephyr upstream unterstützt <zephyr-us:samples/index>`
 
    #. Boards:
 

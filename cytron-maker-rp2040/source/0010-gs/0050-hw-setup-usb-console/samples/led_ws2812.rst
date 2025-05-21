@@ -2,7 +2,7 @@ RGB LED Testmuster über USB-CDC/ACM Console
 *******************************************
 
 Nun wollen wir zum Abschluss des ersten Kapitels unserer Übungen das
-:doc:`zephyr:samples/drivers/led_strip/README` Beispiel von Zephyr mit
+:doc:`zephyr:samples/drivers/led/led_strip/README` Beispiel von Zephyr mit
 Ausgaben über die USB-CDC/ACM Console bauen und überprüfen.
 
 -----------------------------------------------------------------------------
