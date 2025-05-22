@@ -20,6 +20,6 @@ Zusammengefasst erwarten dich also in dieser Übung:
    **neuen Hardwareaufbau funktioniert**.
 #. *Validierung*: Zum Abschluss wird noch ein ganz neues Zephyr Beispiel
    übersetzt, hochgeladen und auf dem neuen Hardwareaufbau getestet, das
-   :doc:`zephyr:samples/drivers/led_strip/README` Beispiel.
+   :doc:`zephyr:samples/drivers/led/led_strip/README` Beispiel.
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

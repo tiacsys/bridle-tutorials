@@ -15,7 +15,7 @@ Shell-Zugriff einrichten
 
    - deinen Hardwareaufbau mit der USB-CDC/ACM Console mit zusätzlichen
      Komponenten erweitern
-   - das Bridle Beispiel ":ref:`bridle:helloshell`" (``helloshell``) bauen,
+   - das Bridle Beispiel ":ref:`bridle:helloshell-sample`" (``helloshell``) bauen,
      hochladen und kennenlernen
 
    Dieses Beispiel basiert auf der Zephyr :ref:`zephyr:shell_api`, einem

@@ -19,6 +19,6 @@
       * - **Software:**
         - Du benötigst exakt die selbe Zephyr Firmware wie in
           :ref:`der Übung zuvor <hs-cli-pwm-buzzer>`, das Bridle Beispiel
-          ":ref:`bridle:helloshell`" (``helloshell``).
+          ":ref:`bridle:helloshell-sample`" (``helloshell``).
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

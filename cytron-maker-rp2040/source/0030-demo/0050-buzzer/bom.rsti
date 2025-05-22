@@ -18,6 +18,6 @@
 
       * - **Software:**
         - Du wirst eine neue Zephyr UF2 Firmware bauen, das Bridle Beispiel
-          :ref:`bridle:buzzer`.
+          :ref:`bridle:buzzer-sample`.
 
 .. vi: ft=rst ai ts=3 et sw=3 sta

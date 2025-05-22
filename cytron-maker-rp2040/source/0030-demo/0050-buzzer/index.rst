@@ -6,7 +6,7 @@ Melodien auf dem Summer (Buzzer) abspielen
 .. sidebar:: Ziel
 
    Übersetzen, programmieren und spielen mit dem Bridle Beispiel
-   :ref:`bridle:buzzer`
+   :ref:`bridle:buzzer-sample`
 
 .. topic:: Übersicht
 

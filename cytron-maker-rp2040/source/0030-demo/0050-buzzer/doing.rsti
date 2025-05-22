@@ -127,14 +127,14 @@ die Tonhöhe (*note*).
              const struct note_duration
              song_beep[] =
              {
-                 {.note = C4, .duration = eigth},
-                 {.note = D4, .duration = eigth},
-                 {.note = E4, .duration = eigth},
-                 {.note = F4, .duration = eigth},
-                 {.note = G4, .duration = eigth},
-                 {.note = A4, .duration = eigth},
-                 {.note = B4, .duration = eigth},
-                 {.note = C5, .duration = eigth},
+                 {.note = C4, .duration = eighth},
+                 {.note = D4, .duration = eighth},
+                 {.note = E4, .duration = eighth},
+                 {.note = F4, .duration = eighth},
+                 {.note = G4, .duration = eighth},
+                 {.note = A4, .duration = eighth},
+                 {.note = B4, .duration = eighth},
+                 {.note = C5, .duration = eighth},
              };
              const size_t song_beep_notes =
                           ARRAY_SIZE(song_beep);
@@ -146,7 +146,7 @@ die Tonhöhe (*note*).
              const struct note_duration
              song_beep[] =
              {
-                 {.note = Db6, .duration = eigth},
+                 {.note = Db6, .duration = eighth},
              };
              const size_t song_beep_notes =
                           ARRAY_SIZE(song_beep);

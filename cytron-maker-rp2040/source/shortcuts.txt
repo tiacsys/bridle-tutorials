@@ -46,10 +46,10 @@
 .. |SERVO_MOTOR_st| replace:: **zephyr/samples/basic/servo_motor**
 .. |SERVO_MOTOR_em| replace:: *zephyr/samples/basic/servo_motor*
 
-.. |LED_STRIP| replace:: zephyr/samples/drivers/led_strip
-.. |LED_STRIP_tt| replace:: ``zephyr/samples/drivers/led_strip``
-.. |LED_STRIP_st| replace:: **zephyr/samples/drivers/led_strip**
-.. |LED_STRIP_em| replace:: *zephyr/samples/drivers/led_strip*
+.. |LED_STRIP| replace:: zephyr/samples/drivers/led/led_strip
+.. |LED_STRIP_tt| replace:: ``zephyr/samples/drivers/led/led_strip``
+.. |LED_STRIP_st| replace:: **zephyr/samples/drivers/led/led_strip**
+.. |LED_STRIP_em| replace:: *zephyr/samples/drivers/led/led_strip*
 
 .. |ADC_DT| replace:: zephyr/samples/drivers/adc/adc_dt
 .. |ADC_DT_tt| replace:: ``zephyr/samples/drivers/adc/adc_dt``
